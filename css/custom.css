@@ -75,7 +75,25 @@ body{
     text-align:center;
     
 }
+
+
+
+.liste {
+   	width: 400px;
+    border: 3px solid black;
+    margin: 10px 10px 10px 10px;
+    color: blue; 
+}
+.liste a {
+background-color: #F2F2F2;
+	color: blue;
+}
+.liste a:hover {
+    background-color:#2EFEF7;
+    cursor:pointer;
+}
+
 /* fonts */
-.header, .choice, .side-ticket h3, .headerTicket{
+.header, .choice, .side-ticket h3, .headerTicket, .liste{
     font-family: 'Rammetto One', cursive;
 }
