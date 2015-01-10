@@ -2,16 +2,14 @@
 /**
  * 
  */
-//foreach( $tickets as $ticket){
+
+foreach( $tickets as $ticket ){
     //form_open();
 ?>
-<form>
-<input name="oznaka" value="<?php echo "Oznaka" ?>"/>
-<div class="choice">
-            <div class="text"><?php echo "A - Uplate i isplate"; ?></div>
-</div>
-</form>
+    <form method="post" action="">
+        <input type="hidden" name="choice" value="<?php echo $ticket ?>"/>
+            <button class="choice" type="submit"><?php echo $ticket ?></button>
+    </form>
 
-<?php // form_close(); 
-//}
-?>
+<?php // form_close();@ 
+}

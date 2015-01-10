@@ -19,7 +19,7 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
-            $this->load->helper('url');
+            //$this->load->helper('url');
             /**loadamo iz tablice oznaka kolko ima različtih oznaka
              * spremamo to sve u polje koje predajemo viewu choose ticket 
              * kako bi generirao preko foreach forme za oznake potrebne za home
@@ -28,10 +28,22 @@ class Home extends CI_Controller {
             /**
              * u $home predajemo polje oznaka tiketa, chooseTicket i stavljamo ga u home div s oznakama
              */
-            $home = $this->load->view('home', array(), true);
-            $data["ticket"] = anchor("ticket", "domagoj"); //razmisliti kako ćemo linkat oznaku na print i upisivanje u bazu
+            //loadamo iz baze
+            $tickets = array();
+            $tickets["tickets"][] = "A - Uplate i isplate";
+            $tickets["tickets"][] = "B - Krediti";
+            $tickets["tickets"][] = "C - Pregled računa";
+            //pravimo forme za oznake iz baze
+            $ticketsView = $this->load->view('components/choose_ticket', $tickets, true);
+            $dataHome["tickets"] = $ticketsView;
+            $home = $this->load->view('home', $dataHome, true);
+            //$data["ticket"] = anchor("ticket", "domagoj"); //razmisliti kako ćemo linkat oznaku na print i upisivanje u bazu
             $data["body"] = $home;
             $this->load->view('templates/main', $data);
+    }
+    
+    public function add() {
+        
     }
 }
 
