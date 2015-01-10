@@ -19,8 +19,8 @@ class Ticket extends CI_Controller {
 	 */
 	public function index()
 	{
-            $this->load->model('ticket');
-            $ticket = new Ticket();
+            $this->load->model('ticket_model');
+            $ticket = new Ticket_Model();
             
             $ticketView = $this->load->view('ticket', array(), true);
             $data["body"] = $ticketView;

@@ -6,15 +6,15 @@ class Home extends CI_Controller {
 	 * Index Page for this controller.
 	 *
 	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
+	 * 		http://example.com/index.php/home
 	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
+	 * 		http://example.com/index.php/home/index
 	 *	- or -
 	 * Since this controller is set as the default controller in 
 	 * config/routes.php, it's displayed at http://example.com/
 	 *
 	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
+	 * map to /index.php/home/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index()
@@ -29,6 +29,30 @@ class Home extends CI_Controller {
              * u $home predajemo polje oznaka tiketa, chooseTicket i stavljamo ga u home div s oznakama
              */
             //loadamo iz baze
+            if($this->input->post("choice"))
+            {
+             
+                $this->load->model("ticket_model");
+                $ticket = new Ticket_Model();
+               
+                $ticket->oznaka = $this->input->post("choice");
+                $ticket->rednibroj = 150; //redniBroj+1;
+                //ocekvrDolaska rješavamo u views/tiket
+                //vrijemestvaranja je default curr. timestamp
+                //uspjesno spojen na bazu
+                $this->load->database();
+                $ticket->save();
+                $this->db->close();
+                
+                $dataTicket = array();
+                $printView = $this->load->view("ticket", $dataTicket, true);
+                $dataPrint["body"] = $printView;
+                $this->load->view("templates/main", $dataPrint);
+                
+                
+            }
+            else
+            {
             $tickets = array();
             $tickets["tickets"][] = "A - Uplate i isplate";
             $tickets["tickets"][] = "B - Krediti";
@@ -40,6 +64,7 @@ class Home extends CI_Controller {
             //$data["ticket"] = anchor("ticket", "domagoj"); //razmisliti kako ćemo linkat oznaku na print i upisivanje u bazu
             $data["body"] = $home;
             $this->load->view('templates/main', $data);
+            }
     }
     
     public function add() {

@@ -1,21 +1,15 @@
 <?php
 
-class TicketModel extends MY_Model {
+class Ticket_Model extends MY_Model {
     
-    const DB_TABLE = 'tiket';
-    const DB_TABLE_PK = 'id';
-    
-    /**
-     * Publication unique identifier.
-     * @var int
-     */
-    public $id;
+    protected $DB_TABLE = 'tiket';
+    protected  $DB_TABLE_PK = 'id';
     
     /**
      * naziv ustanove.
      * @var string
      */
-    public $poslodavac;
+    public $poslodavac = "PBZ";
     /**
      *oznaka tiketa. 
      * @var string 

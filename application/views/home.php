@@ -13,7 +13,7 @@
 </div>
 <div class="page">
     <aside>
-        <div class="side">
+        <div class="side home">
             <div class="side-ticket">
                 <!-- trenutni tiket -->
                 <h3>Trenutni tiket: 45</h3>
@@ -24,7 +24,6 @@
             </div>
         </div>
     </aside>
-
     <!--generirati iz sql upita izbore šaltera -->
     <div class="main">
         <?= $tickets;  ?>

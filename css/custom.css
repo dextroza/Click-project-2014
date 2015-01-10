@@ -65,6 +65,10 @@ body{
     float:left;
 }
 
+.home{
+    margin-top:10px;
+}
+
 .side-ticket{
     width:300px;
     height:120px;

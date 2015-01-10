@@ -11,5 +11,7 @@ foreach( $tickets as $ticket ){
             <button class="choice" type="submit"><?php echo $ticket ?></button>
     </form>
 
-<?php // form_close();@ 
+<?php
 }
+
+
