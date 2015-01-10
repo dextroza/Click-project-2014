@@ -19,12 +19,21 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
-		$home = $this->load->view('home', array(), true);
-                $data["body"] = $home;
-                $this->load->view('templates/main', $data);
-                
-	}
+            $this->load->helper('url');
+            /**loadamo iz tablice oznaka kolko ima različtih oznaka
+             * spremamo to sve u polje koje predajemo viewu choose ticket 
+             * kako bi generirao preko foreach forme za oznake potrebne za home
+             */
+            //$chooseTicket = $this->load->view('components/choose_ticket', true);
+            /**
+             * u $home predajemo polje oznaka tiketa, chooseTicket i stavljamo ga u home div s oznakama
+             */
+            $home = $this->load->view('home', array(), true);
+            $data["ticket"] = anchor("ticket", "domagoj"); //razmisliti kako ćemo linkat oznaku na print i upisivanje u bazu
+            $data["body"] = $home;
+            $this->load->view('templates/main', $data);
+    }
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* End of file home.php */
+/* Location: ./application/controllers/home.php */

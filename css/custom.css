@@ -21,6 +21,11 @@ body{
     background-color: #086A87;
     padding-top: 10px;    
 }
+/* ispis tiketa */
+#print{
+    height:100px;
+}
+
 
 .sustav{
     float:right;
@@ -71,6 +76,6 @@ body{
     
 }
 /* fonts */
-.header, .choice, .side-ticket h3{
+.header, .choice, .side-ticket h3, .headerTicket{
     font-family: 'Rammetto One', cursive;
 }

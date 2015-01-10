@@ -31,9 +31,10 @@
         <div class="choice">
             <div class="text">A - Uplate i isplate</div>
         </div>
-        <div class="choice">
+<!--        <div class="choice">
             <div class="text">B - Krediti</div>
-        </div>
+        </div>-->
+        <?php //echo $ticket; ?>
         <div class="choice">
             <div class="text">C - Pregled računa</div>
         </div>
