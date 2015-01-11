@@ -98,6 +98,15 @@ body{
     cursor:pointer;
 }
 
+.ticket {
+    font-size: 18px;
+    font-weight: bold; 
+    color: #0000FF;
+}
+.ticket td{
+    text-align:center; 
+}
+
 /* fonts */
 .header, .choice, .side-ticket h3, .headerTicket, .liste{
     font-family: 'Rammetto One', cursive;

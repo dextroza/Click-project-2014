@@ -1,43 +1,35 @@
-<style type="text/css">
-<!--
-.style7 {font-size: 18px; font-weight: bold; color: #0000FF; }
--->
-</style>
 <div class="header" id="print">
     <h1>Ispis tiketa</h1>
 </div>
-
 <div class="ticket">
   <div align="center">
     <p>&nbsp;</p>
     <table width="70%" height="260" border="3" bordercolor="#000000" bgcolor="#CCCCCC">
-      <tr>
-          <td width="37%"><div align="left" class="style7">
-            <div align="left"> Poslodavac</div>
-        </div></td>
-        <td width="63%">&nbsp;</td>
-      </tr>
         <tr>
-          <td><div align="left" class="style7"> Oznaka opcije</div></td>
-          <td>&nbsp;</td>
+            <td width="37%">Poslodavac</td>
+            <td width="63%"><?= $ticket->poslodavac; ?></td>
         </tr>
         <tr>
-          <td><div align="left" class="style7">   Redni broj</div></td>
-          <td>&nbsp;</td>
+            <td>Oznaka opcije</td>
+            <td><?= $ticket->oznaka; ?></td>
         </tr>
         <tr>
-          <td><div align="left" class="style7">  O&#269;ekivano vrijeme dolaska na red</div></td>
-          <td>&nbsp;</td>
+            <td width="37%">Redni broj</td>
+            <td width="63%"><?= $ticket->rednibroj; ?></td>
         </tr>
         <tr>
-          <td><div align="left" class="style7">  Vrijeme stavranja tiketa</div></td>
-          <td>&nbsp;</td>
+            <td>Ocekivano vrijeme dolaska na red</td>
+            <td><?= $ticket->ocekvrdolaska; ?></td>
         </tr>
         <tr>
-          <td><div align="left" class="style7">  ID</div></td>
-          <td>&nbsp;</td>
+            <td width="37%">Vrijeme stvaranja tiketa</td>
+            <td width="63%"><?= $ticket->vrijemestvaranja; ?></td>
         </tr>
-        </table>  
+        <tr>
+            <td>ID</td>
+            <td><?= $ticket->getId(); ?></td>
+        </tr>
+    </table>  
   </div>
 </div>
 

@@ -30,5 +30,9 @@ class Ticket_Model extends MY_Model {
      * @var date
      */
     public $vrijemestvaranja;
-            
+    public function getId() {
+        return $this->DB_TABLE_PK;
+        
+    }
+         
 }

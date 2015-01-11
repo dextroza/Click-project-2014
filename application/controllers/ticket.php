@@ -19,6 +19,7 @@ class Ticket extends CI_Controller {
 	 */
 	public function index()
 	{
+            if($this->input->post("choice")) echo "bravooo";
             $this->load->model('ticket_model');
             $ticket = new Ticket_Model();
             

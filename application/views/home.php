@@ -26,7 +26,7 @@
     </aside>
     <!--generirati iz sql upita izbore šaltera -->
     <div class="main">
-        <?= $tickets;  ?>
+        <?= $options;  ?>
 <!--        <div class="choice">
             <div class="text">A - Uplate i isplate</div>
         </div>

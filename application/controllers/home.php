@@ -19,32 +19,39 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
-            //$this->load->helper('url');
-            /**loadamo iz tablice oznaka kolko ima različtih oznaka
-             * spremamo to sve u polje koje predajemo viewu choose ticket 
-             * kako bi generirao preko foreach forme za oznake potrebne za home
-             */
-            //$chooseTicket = $this->load->view('components/choose_ticket', true);
             /**
-             * u $home predajemo polje oznaka tiketa, chooseTicket i stavljamo ga u home div s oznakama
+             * problem sa ispisom vremena stvaranja jer je zapravo varijabla prazna zbog
+             * spremanja vrijednosti u nju metodom save()
+             * 
+             * potrebno omogućiti novi library s database funkcijama koje bi se pozivale možda
+             *  tu za to vrijeme stvaranj ili nešto drugo
              */
-            //loadamo iz baze
+           
             if($this->input->post("choice"))
             {
-             
+                //$this->load->library("Mydatabase");
+                
+               
                 $this->load->model("ticket_model");
                 $ticket = new Ticket_Model();
-               
+                
                 $ticket->oznaka = $this->input->post("choice");
-                $ticket->rednibroj = 150; //redniBroj+1;
-                //ocekvrDolaska rješavamo u views/tiket
-                //vrijemestvaranja je default curr. timestamp
-                //uspjesno spojen na bazu
                 $this->load->database();
+                //nalazimo najvisi redni broj i dodjeljujemo tiketu za 1 visi r.broj
+                $query = $this->db->query("SELECT MAX(rednibroj) as max_redni FROM tiket ");
+                foreach($query->result() as $result){
+                    $ordinalNumber = $result->max_redni + 1;
+                }
+                $ticket->rednibroj = $ordinalNumber;
+                //ocekvrDolaska rješavamo u views/tiket ili tu funkcija
+                //vrijemestvaranja je default curr. timestamp
+                
+                
                 $ticket->save();
                 $this->db->close();
                 
                 $dataTicket = array();
+                $dataTicket["ticket"] = $ticket;
                 $printView = $this->load->view("ticket", $dataTicket, true);
                 $dataPrint["body"] = $printView;
                 $this->load->view("templates/main", $dataPrint);
@@ -53,17 +60,22 @@ class Home extends CI_Controller {
             }
             else
             {
-            $tickets = array();
-            $tickets["tickets"][] = "A - Uplate i isplate";
-            $tickets["tickets"][] = "B - Krediti";
-            $tickets["tickets"][] = "C - Pregled računa";
-            //pravimo forme za oznake iz baze
-            $ticketsView = $this->load->view('components/choose_ticket', $tickets, true);
-            $dataHome["tickets"] = $ticketsView;
-            $home = $this->load->view('home', $dataHome, true);
-            //$data["ticket"] = anchor("ticket", "domagoj"); //razmisliti kako ćemo linkat oznaku na print i upisivanje u bazu
-            $data["body"] = $home;
-            $this->load->view('templates/main', $data);
+                $this->load->database();
+             $dataOption = array();
+             $this->load->model("Options_Model");
+             $options = $this->Options_Model->get();
+             foreach($options as $option){
+                 $dataOption["options"][] = $option;
+             }
+             $optionsView = $this->load->view('components/choose_option', $dataOption, true);
+             
+             $dataHome = array();
+             $dataHome["options"] = $optionsView;
+             $home = $this->load->view('home', $dataHome, true);
+             
+             $data = array();
+             $data["body"] = $home;
+             $this->load->view('templates/main', $data);
             }
     }
     
