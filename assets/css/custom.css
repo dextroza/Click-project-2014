@@ -11,6 +11,7 @@ and open the template in the editor.
 body{
     background-color: #D8D8D8;
     
+    
 }
 
 .header {
@@ -50,7 +51,7 @@ body{
 }
 
 .choice:hover {
-    background-color:#2EFEF7;
+    background-color:#C8C8C8;
     cursor:pointer;
 }
 
@@ -104,10 +105,21 @@ body{
     color: #0000FF;
 }
 .ticket td{
-    text-align:center; 
+    text-align:center;
+    color: #0000FF;
+}
+/*gumb za povratak s ticket na home*/
+.back a{
+    margin-left:5px;
+    float:left;
+    color:white;
+    font-size:20px;
+    text-decoration:none;
 }
 
 /* fonts */
-.header, .choice, .side-ticket h3, .headerTicket, .liste{
+.header, .choice, .side-ticket h3, .headerTicket, .liste, .ticket td, .back a{
     font-family: 'Rammetto One', cursive;
+    font-family: 'Raleway', sans-serif;
+    font-family: 'arial', sans-serif;
 }

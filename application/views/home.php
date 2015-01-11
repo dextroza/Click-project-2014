@@ -1,4 +1,5 @@
 <div class="header">
+    
     <h1>Dobro došli u tiketomat</h1>
     <div class="sustav">
         <p>Uđi u sustav:</p>
@@ -14,14 +15,12 @@
 <div class="page">
     <aside>
         <div class="side home">
-            <div class="side-ticket">
-                <!-- trenutni tiket -->
-                <h3>Trenutni tiket: 45</h3>
-            </div>
-            <div class="side-ticket">
-                <!-- vrijeme dolaska sljedećeg tiketa -->
-                <h3>Vrijeme dolaska sljedećeg tiketa: 15:45h </h3>
-            </div>
+            <?= isset($ordinalNumber)?$ordinalNumber:"" ?>
+            <?= isset($dateTime)?$dateTime:"" ?>
+            <?= isset($totalTickets)?$totalTickets:"" ?>
+            <?= isset($timeNextTicket)?$timeNextTicket:"" ?>
+            <?= isset($workTime)?$workTime:"" ?>
+            
         </div>
     </aside>
     <!--generirati iz sql upita izbore šaltera -->

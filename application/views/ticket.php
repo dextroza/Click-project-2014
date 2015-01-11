@@ -1,4 +1,5 @@
 <div class="header" id="print">
+    <div class="back"><?=$back; ?></div>
     <h1>Ispis tiketa</h1>
 </div>
 <div class="ticket">
@@ -32,5 +33,15 @@
     </table>  
   </div>
 </div>
+<!--automatsko loadanje home page-->
+<!--<script>
+    $(document).ready(function(){
+    setTimeout(function() {
+         
+         window.open("localhost/queueOptimization","_self")
+            
+    }, 2000);
+  
+});</script>-->
 
 

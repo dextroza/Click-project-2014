@@ -1,6 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Home extends CI_Controller {
+    private $dataHome = array();  
+    private $information = array();
 
 	/**
 	 * Index Page for this controller.
@@ -26,41 +28,47 @@ class Home extends CI_Controller {
              * potrebno omogućiti novi library s database funkcijama koje bi se pozivale možda
              *  tu za to vrijeme stvaranj ili nešto drugo
              */
-           
-            if($this->input->post("choice"))
-            {
-                //$this->load->library("Mydatabase");
-                
-               
-                $this->load->model("ticket_model");
-                $ticket = new Ticket_Model();
-                
-                $ticket->oznaka = $this->input->post("choice");
-                $this->load->database();
-                //nalazimo najvisi redni broj i dodjeljujemo tiketu za 1 visi r.broj
-                $query = $this->db->query("SELECT MAX(rednibroj) as max_redni FROM tiket ");
-                foreach($query->result() as $result){
-                    $ordinalNumber = $result->max_redni + 1;
-                }
-                $ticket->rednibroj = $ordinalNumber;
-                //ocekvrDolaska rješavamo u views/tiket ili tu funkcija
-                //vrijemestvaranja je default curr. timestamp
-                
-                
-                $ticket->save();
-                $this->db->close();
-                
-                $dataTicket = array();
-                $dataTicket["ticket"] = $ticket;
-                $printView = $this->load->view("ticket", $dataTicket, true);
-                $dataPrint["body"] = $printView;
-                $this->load->view("templates/main", $dataPrint);
-                
-                
+             $this->load->database();
+             
+             $optionsView = $this->getOptions();
+             $this->dataHome["options"] = $optionsView;
+             
+             $this->information = $this->getConfig();
+             $this->whatToShow();
+             
+             $home = $this->load->view('home', $this->dataHome, true);
+             $data = array();
+             $data["body"] = $home;
+             $this->load->view('templates/main', $data);
+        }
+    
+    /**
+     * get configuration to show details to client
+     * @param no
+     * @return array
+     */
+    public function getConfig() {
+            $query = $this->db->query("SELECT * FROM prikaz");
+            foreach($query->result() as $row){
+                $dateTime = $row->vrij_datum;
+                $totalTickets = $row->ukupan_br;
+                $ordinalNumber = $row->redni_br;
+                $timeNextTicket = $row->pros_vri_cek;
+                $workTime =  $row->poc_rada;   
             }
-            else
-            {
-                $this->load->database();
+            return array( "dateTime" => $dateTime,
+                          "totalTickets" => $totalTickets,
+                          "ordinalNumber" => $ordinalNumber,
+                          "timeNextTicket" => $timeNextTicket,
+                          "workTime" => $workTime,
+                        );
+        
+    }
+    /**
+     * get options view
+     * @return string view of options
+     */
+    private function getOptions() {
              $dataOption = array();
              $this->load->model("Options_Model");
              $options = $this->Options_Model->get();
@@ -68,19 +76,47 @@ class Home extends CI_Controller {
                  $dataOption["options"][] = $option;
              }
              $optionsView = $this->load->view('components/choose_option', $dataOption, true);
-             
-             $dataHome = array();
-             $dataHome["options"] = $optionsView;
-             $home = $this->load->view('home', $dataHome, true);
-             
-             $data = array();
-             $data["body"] = $home;
-             $this->load->view('templates/main', $data);
-            }
-    }
-    
-    public function add() {
+             return $optionsView;
         
+    }
+    private function whatToShow() {
+        if ($this->information["ordinalNumber"] === "1")
+             {  
+                 $ordinalNumberView = $this->load->view("components/information/current_ticket", 
+                                                        array("ordinalNumber" => "56"), 
+                                                        true);
+                 $this->dataHome ["ordinalNumber"] = $ordinalNumberView;
+             }
+        
+        if ($this->information["dateTime"] === "1")
+             {  
+                 $dateTimeView = $this->load->view("components/information/date_time", 
+                                                        array(), 
+                                                        true);
+                 $this->dataHome ["dateTime"] = $dateTimeView;
+             }
+        if ($this->information["totalTickets"] === "1")
+             {  
+                 $totalTicketsView = $this->load->view("components/information/total_tickets", 
+                                                        array("totalTickets" => "534"), 
+                                                        true);
+                 $this->dataHome ["totalTickets"] = $totalTicketsView;
+             }
+        if ($this->information["timeNextTicket"] === "1")
+             {  
+                 $timeNextTicketView = $this->load->view("components/information/time_next_ticket", 
+                                                        array("timeNextTicket" => "19:56h"), 
+                                                        true);
+                 $this->dataHome ["timeNextTicket"] = $timeNextTicketView;
+             }
+        if ($this->information["workTime"] === "1")
+             {  
+                 $workTimeView = $this->load->view("components/information/work_time", 
+                                                        array("workTime" => "08h"), 
+                                                        true);
+                 $this->dataHome ["workTime"] = $workTimeView;
+             }      
+             
     }
 }
 
