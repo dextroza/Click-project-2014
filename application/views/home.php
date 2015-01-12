@@ -1,16 +1,7 @@
 <div class="header">
     
-    <h1>Dobro došli u tiketomat</h1>
-    <div class="sustav">
-        <p>Uđi u sustav:</p>
-        <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="username"><br>
-                <input type="password" class="form-control" placeholder="password">
-            </div>
-            <button type="submit" class="btn btn-default navbar-btn">Login</button>
-        </form>
-    </div>
+    <h1>Dobro došli u redomat</h1>
+    <?= isset($loginView)?$loginView:"" ?>
 </div>
 <div class="page">
     <aside>
@@ -25,7 +16,7 @@
     </aside>
     <!--generirati iz sql upita izbore šaltera -->
     <div class="main">
-        <?= $options;  ?>
+        <?= isset($options)?$options:"";  ?>
 <!--        <div class="choice">
             <div class="text">A - Uplate i isplate</div>
         </div>

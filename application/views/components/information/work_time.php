@@ -1,4 +1,4 @@
 <div>
-    Radno vrijeme: <?= $workTime ?>
+    Početak rada: <?= $workTime ?>
 </div>
 

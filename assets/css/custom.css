@@ -22,6 +22,9 @@ body{
     background-color: #086A87;
     padding-top: 10px;    
 }
+#nadzornik{
+    height:100px;
+}
 /* ispis tiketa */
 #print{
     height:100px;
@@ -84,19 +87,32 @@ body{
 
 
 
-.liste {
+.opcije {
    	width: 400px;
     border: 3px solid black;
     margin: 10px 10px 10px 10px;
     color: blue; 
 }
-.liste a {
-	background-color: #F2F2F2;
-	color: blue;
+.opcije button {
+    width:100%;
+    background-color: #F2F2F2;
+    color: blue;
 }
-.liste a:hover {
-    background-color:#2EFEF7;
+.opcije button:hover {
+    background-color:#C8C8C8;
+    color:blue;
     cursor:pointer;
+}
+
+/*#naslovOpcije-no-hover:hover{
+    #result-side-menu li.li-no-hover:hover {
+    background-color: transparent;
+}*/
+
+.opcije li{
+    background-color: #F2F2F2;
+    /*padding-top:0px;*/
+    
 }
 
 .ticket {
@@ -118,7 +134,7 @@ body{
 }
 
 /* fonts */
-.header, .choice, .side-ticket h3, .headerTicket, .liste, .ticket td, .back a{
+.header, .choice, .side-ticket h3, .headerTicket, .liste, .ticket td, .back a, .sustav p{
     font-family: 'Rammetto One', cursive;
     font-family: 'Raleway', sans-serif;
     font-family: 'arial', sans-serif;
