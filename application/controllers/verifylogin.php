@@ -25,7 +25,10 @@ class VerifyLogin extends CI_Controller {
    else
    {
      //Go to private area  djelatnik ili nadzornik
-     redirect('nadzornik', 'refresh');
+       $username = $this->input->post("username");
+       if ("admin" === $username) redirect('nadzornik', 'refresh');
+       else redirect('djelatnik', 'refresh');
+       
    }
 
  }
