@@ -24,11 +24,28 @@ Class Data extends CI_Model
      * @param array $information
      * @return array dataHome
      */
+    
+    /**
+     * currentTicket
+     * 
+     * @return int redni broj
+     */
+    public function currentTicket() {
+        
+        $query = $this->db->query("SELECT rednibroj FROM tiket WHERE id = (SELECT MAX(id) FROM tiket)");
+
+        foreach($query->result() as $row){
+          return $row->rednibroj;
+        }
+    }
     public function whatToShow($information, $dataHome) {
+        
         if ($information["ordinalNumber"] === "1")
              {  
+            $currentTicket = $this->currentTicket();
+            
                  $ordinalNumberView = $this->load->view("components/information/current_ticket", 
-                                                        array("ordinalNumber" => "56"), 
+                                                        array("ordinalNumber" => $currentTicket), 
                                                         true);
                  $dataHome ["ordinalNumber"] = $ordinalNumberView;
              }
