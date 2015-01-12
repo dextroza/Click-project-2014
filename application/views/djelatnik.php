@@ -1,6 +1,14 @@
 <div class="header">
     <h1>Djelatnik</h1>
+    <aside>
+    	<div class="side home">
+     		<?= isset($dateTime)?$dateTime:"" ?>
+    		<?= isset($workTime)?$workTime:"" ?>
+            <?= isset($totalTickets)?$totalTickets:"" ?>
+        </div>
+    </aside>
 </div>
+	
 <div class="page">
     <aside>
         <div class="side">

@@ -23,7 +23,7 @@ body{
     padding-top: 10px;    
 }
 #nadzornik{
-    height:100px;
+    height:200px;
 }
 /* ispis tiketa */
 #print{
@@ -84,7 +84,6 @@ body{
     text-align:center;
     
 }
-
 
 
 .opcije {

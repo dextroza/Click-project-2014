@@ -1,16 +1,19 @@
 <div class="header" id="nadzornik">
     <h1>Nadzornik</h1>
+    <aside>
+    	<div class="side home">
+     		<?= isset($dateTime)?$dateTime:"" ?>
+    		<?= isset($workTime)?$workTime:"" ?>
+            <?= isset($totalTickets)?$totalTickets:"" ?>
+        </div>
+    </aside>
 </div>
 <div class="page">
     <aside>
         <div class="side home">
             <?= isset($ordinalNumber)?$ordinalNumber:"" ?>
-            <?= isset($dateTime)?$dateTime:"" ?>
-            <?= isset($totalTickets)?$totalTickets:"" ?>
-            <?= isset($timeNextTicket)?$timeNextTicket:"" ?>
-            <?= isset($workTime)?$workTime:"" ?>
-            
-        </div>
+            <?= isset($timeNextTicket)?$timeNextTicket:"" ?>         
+          </div>
     </aside>
     
     <div class = "main">
