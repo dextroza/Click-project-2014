@@ -40,7 +40,12 @@ Class Data extends CI_Model
     }
     public function whatToShow($dataHome, $optional = array()) {
         $status = isset($optional["status"]) ? TRUE:FALSE;
-        $information = isset($optional["information"]) ? $optional["information"]:array(); 
+        $information = isset($optional["information"]) ? $optional["information"]:array("ordinalNumber" => 0,
+                                                                                        "dateTime" =>0,
+                                                                                        "totalTickets" => 0,
+                                                                                        "timeNextTicket" =>0,
+                                                                                        "workTime" => 0,
+                                                                                        ); 
         
         
         if ($information["ordinalNumber"] === "1" || $status==TRUE)

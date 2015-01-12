@@ -32,22 +32,6 @@ class Nadzornik extends CI_Controller {
             
             $this->dataNadzornik = $this->data->whatToShow($this->dataNadzornik, array("status" => TRUE));
             
-            $this->dataNadzornik["ordinalNumber"] = $this->load->view("components/information/current_ticket", 
-                                                        array("ordinalNumber" => "56"), 
-                                                        true);
-            $this->dataNadzornik["dateTime"] = $this->load->view("components/information/date_time", 
-                                                        array(), 
-                                                        true);
-            $this->dataNadzornik["totalTickets"] = $this->load->view("components/information/total_tickets", 
-                                                        array("totalTickets" => "534"), 
-                                                        true);
-            $this->dataNadzornik["timeNextTicket"] = $this->load->view("components/information/time_next_ticket", 
-                                                        array("timeNextTicket" => "19:56h"), 
-                                                        true);
-            $this->dataNadzornik["workTime"] = $this->load->view("components/information/work_time", 
-                                                        array("workTime" => "08h"), 
-                                                        true);
-            
             $nadzornik = $this->load->view('nadzornik', $this->dataNadzornik, true);
             $data = array();
             $data["body"] = $nadzornik;
