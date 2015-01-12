@@ -30,6 +30,14 @@ Class Data extends CI_Model
      * 
      * @return int redni broj
      */
+	public function sumTickets () {
+		$query = $this->db->query("SELECT COUNT(id) as suma FROM tiket where DATE(vrijemestvaranja) = CURDATE()");
+		
+		foreach($query->result() as $red) {
+			return $red->suma;
+		}
+	}
+	 
     public function currentTicket() {
         
         $query = $this->db->query("SELECT rednibroj FROM tiket WHERE id = (SELECT MAX(id) FROM tiket)");
@@ -67,8 +75,9 @@ Class Data extends CI_Model
              }
         if ($information["totalTickets"] === "1" || $status==TRUE)
              {  
+			 	$totalTickets = $this->sumTickets();
                  $totalTicketsView = $this->load->view("components/information/total_tickets", 
-                                                        array("totalTickets" => "534"), 
+                                                        array("totalTickets" => $totalTickets), 
                                                         true);
                  $data ["totalTickets"] = $totalTicketsView;
              }
