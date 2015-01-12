@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2015 at 06:12 PM
+-- Generation Time: Jan 12, 2015 at 06:24 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -114,10 +114,10 @@ CREATE TABLE IF NOT EXISTS `tiket` (
   `poslodavac` varchar(50) NOT NULL,
   `oznaka` varchar(20) NOT NULL,
   `rednibroj` int(3) NOT NULL,
-  `ocekvrdolaska` time NOT NULL,
+  `ocekvrdolaska` time DEFAULT NULL,
   `vrijemestvaranja` timestamp NOT NULL,
-  `vrijemeposluz` time NOT NULL,
-  `vrijemecekanja` int(3) NOT NULL,
+  `vrijemeposluz` time DEFAULT NULL,
+  `vrijemecekanja` int(3) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=52 ;
 
