@@ -11,7 +11,11 @@ class Nadzornik extends CI_Controller {
    
 	public function index()
 	{
-            
+            if($this->input->post("option")){
+                $editOption = $this->load->view("components/edit_option",array(), true);
+                $this->dataNadzornik["editOption"] = $editOption;
+            }
+           
             $this->load->helper("url");
             $this->load->helper("form");
             
@@ -19,12 +23,15 @@ class Nadzornik extends CI_Controller {
             $dataOption = $this->data->getOptions();
             $optionsList["dataOption"] = $dataOption;
             //var_dump($optionsList["dataOption"]["options"][0]);
-            $newOption = anchor("newOption", "Dodaj novu opciju", 'class="list-group-item"');
+            $newOption = anchor("newOption", "Dodaj novu opciju", 'class="list-group-item"');  
             $optionsList["newOption"] = $newOption;
             
             
             $optionsView = $this->load->view("components/options_list", $optionsList, true);
-            $this->dataNadzornik["optionsList"] = $optionsView;           
+            $this->dataNadzornik["optionsList"] = $optionsView;       
+            
+            $this->dataNadzornik = $this->data->whatToShow($this->dataNadzornik, array("status" => TRUE));
+            
             $this->dataNadzornik["ordinalNumber"] = $this->load->view("components/information/current_ticket", 
                                                         array("ordinalNumber" => "56"), 
                                                         true);
@@ -47,4 +54,5 @@ class Nadzornik extends CI_Controller {
             //var_dump($this->session->userdata("logged_in")["id"]); //id logirane osobe
             $this->load->view('templates/main', $data);
     }
+    
 }

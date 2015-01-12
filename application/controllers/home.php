@@ -8,6 +8,7 @@ class Home extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('data','',TRUE);
+        $this->load->database();
     }
     //kraj novog
 
@@ -38,8 +39,7 @@ class Home extends CI_Controller {
              *  tu za to vrijeme stvaranj ili nešto drugo
              */
             
-            //admin i djelatnik
-            $this->load->database();            
+            //admin i djelatnik          
             $this->load->helper(array('form'));
             $loginView = $this->load->view("components/login_view", array(),true);
             $this->dataHome["loginView"] = $loginView;
@@ -49,7 +49,7 @@ class Home extends CI_Controller {
             $this->dataHome["options"] = $optionsView;
 //
             $this->information = $this->data->getConfig();
-            $this->dataHome = $this->data->whatToShow($this->information, $this->dataHome);
+            $this->dataHome = $this->data->whatToShow($this->dataHome, array("information" =>$this->information));
 //          $this->whatToShow();
 //
             $home = $this->load->view('home', $this->dataHome, true);

@@ -17,14 +17,17 @@
     </aside>
     
     <div class = "main">
-		    
-    	<?= isset($optionsList)?$optionsList:"" ?>
-        <div class="choice">
-            <div class="text">Resetiraj brojač</div>
+        <div class="mainNadzornik">
+
+            <?= isset($optionsList) ? $optionsList : "" ?>
+            <div class="choice">
+                <div class="text">Resetiraj brojač</div>
+            </div>
+            <div class="choice">
+                <div class="text">Izvještaj</div>
+            </div>
         </div>
-        <div class="choice">
-            <div class="text">Izvještaj</div>
-       	</div>
-     </div> 
+        <?= isset($editOption)?$editOption:"" ?>
+    </div>
 </div> 
    

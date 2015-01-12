@@ -12,9 +12,9 @@
 
      <!--Optional theme --> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/custom.css"> <!-- za default route -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/custom.css"><!-- za direktno pristupanje kontroleru -->
-    <link rel="stylesheet" type="text/css" href="../../assets/css/custom.css"><!-- za direktno pristupanje kontroler/index -->
+    <link rel="stylesheet" type="text/css" href="assets/css/custom.php"> <!-- za default route -->
+    <link rel="stylesheet" type="text/css" href="../assets/css/custom.php"><!-- za direktno pristupanje kontroleru -->
+    <link rel="stylesheet" type="text/css" href="../../assets/css/custom.php"><!-- za direktno pristupanje kontroler/index -->
     
 
      <!--Latest compiled and minified JavaScript--> 

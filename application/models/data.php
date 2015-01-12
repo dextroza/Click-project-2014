@@ -38,9 +38,12 @@ Class Data extends CI_Model
           return $row->rednibroj;
         }
     }
-    public function whatToShow($information, $dataHome) {
+    public function whatToShow($dataHome, $optional = array()) {
+        $status = isset($optional["status"]) ? TRUE:FALSE;
+        $information = isset($optional["information"]) ? $optional["information"]:array(); 
         
-        if ($information["ordinalNumber"] === "1")
+        
+        if ($information["ordinalNumber"] === "1" || $status==TRUE)
              {  
             $currentTicket = $this->currentTicket();
             
@@ -50,28 +53,28 @@ Class Data extends CI_Model
                  $dataHome ["ordinalNumber"] = $ordinalNumberView;
              }
         
-        if ($information["dateTime"] === "1")
+        if ($information["dateTime"] === "1" || $status==TRUE)
              {  
                  $dateTimeView = $this->load->view("components/information/date_time", 
                                                         array(), 
                                                         true);
                  $dataHome ["dateTime"] = $dateTimeView;
              }
-        if ($information["totalTickets"] === "1")
+        if ($information["totalTickets"] === "1" || $status==TRUE)
              {  
                  $totalTicketsView = $this->load->view("components/information/total_tickets", 
                                                         array("totalTickets" => "534"), 
                                                         true);
                  $dataHome ["totalTickets"] = $totalTicketsView;
              }
-        if ($information["timeNextTicket"] === "1")
+        if ($information["timeNextTicket"] === "1" || $status==TRUE)
              {  
                  $timeNextTicketView = $this->load->view("components/information/time_next_ticket", 
                                                         array("timeNextTicket" => "19:56h"), 
                                                         true);
                  $dataHome ["timeNextTicket"] = $timeNextTicketView;
              }
-        if ($information["workTime"] === "1")
+        if ($information["workTime"] === "1" || $status==TRUE)
              {  
                  $workTimeView = $this->load->view("components/information/work_time", 
                                                         array("workTime" => "08h"), 
