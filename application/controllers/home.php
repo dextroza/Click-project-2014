@@ -29,7 +29,7 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
-          
+           
             
             /**
              * problem sa ispisom vremena stvaranja jer je zapravo varijabla prazna zbog
