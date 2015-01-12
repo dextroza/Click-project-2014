@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.1.6
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2015 at 06:24 PM
--- Server version: 5.6.17
--- PHP Version: 5.5.12
+-- Generation Time: Jan 12, 2015 at 08:40 PM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -115,11 +115,11 @@ CREATE TABLE IF NOT EXISTS `tiket` (
   `oznaka` varchar(20) NOT NULL,
   `rednibroj` int(3) NOT NULL,
   `ocekvrdolaska` time DEFAULT NULL,
-  `vrijemestvaranja` timestamp NOT NULL,
+  `vrijemestvaranja` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `vrijemeposluz` time DEFAULT NULL,
-  `vrijemecekanja` int(3) DEFAULT NULL,
+  `vrijemecekanja` int(3) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=52 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=57 ;
 
 --
 -- Dumping data for table `tiket`
@@ -176,7 +176,12 @@ INSERT INTO `tiket` (`id`, `poslodavac`, `oznaka`, `rednibroj`, `ocekvrdolaska`,
 (48, 'PBZ', 'B', 48, '15:32:00', '2014-12-01 14:21:00', '15:22:00', 1),
 (49, 'PBZ', 'C', 49, '15:35:00', '2014-12-01 14:25:00', '15:29:00', 4),
 (50, 'PBZ', 'C', 50, '15:52:00', '2014-12-01 14:42:00', '15:42:00', 0),
-(51, 'PBZ', 'A', 51, '16:00:00', '2014-12-01 14:50:00', '15:51:00', 1);
+(51, 'PBZ', 'A', 51, '16:00:00', '2014-12-01 14:50:00', '15:51:00', 1),
+(52, 'PBZ', 'A - Uplate i isplate', 52, NULL, '2015-01-12 17:21:36', NULL, 0),
+(53, 'PBZ', 'A - Uplate i isplate', 53, NULL, '2015-01-12 17:21:41', NULL, 0),
+(54, 'PBZ', 'A - Uplate i isplate', 54, NULL, '2015-01-12 19:35:50', NULL, 0),
+(55, 'PBZ', 'A - Uplate i isplate', 55, NULL, '2015-01-12 19:39:43', NULL, 0),
+(56, 'PBZ', 'A - Uplate i isplate', 56, NULL, '2015-01-12 19:39:48', NULL, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
