@@ -22,7 +22,7 @@ class Nadzornik extends CI_Controller {
             $this->load->helper("form");
             
             $optionsList = array();
-            $dataOption = $this->data->getOptions();
+            $dataOption = $this->data->getAllOptions();
             $optionsList["dataOption"] = $dataOption;
             //var_dump($optionsList["dataOption"]["options"][0]);
             $newOption = anchor("newOption", "Dodaj novu opciju", 'class="list-group-item"');  

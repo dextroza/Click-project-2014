@@ -43,7 +43,7 @@ class Home extends CI_Controller {
             $this->load->helper(array('form'));
             $loginView = $this->load->view("components/login_view", array(),true);
             $this->dataHome["loginView"] = $loginView;
-            $dataOption = $this->data->getOptions();
+            $dataOption = $this->data->getAllOptions();
             $optionsView = $this->load->view('components/choose_option', $dataOption, true);
 //            $optionsView = $this->data->getOptions();
             $this->dataHome["options"] = $optionsView;

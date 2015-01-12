@@ -104,7 +104,7 @@ Class Data extends CI_Model
      * get all options for clients
      * @return array dataOption
      */
-    public function getOptions() {
+    public function getAllOptions() {
         $dataOption = array();
         $this->load->model("Options_Model");
         $options = $this->Options_Model->get();
@@ -114,6 +114,11 @@ Class Data extends CI_Model
         return $dataOption;
     }
     
+    /**
+     * 
+     * @param int $id
+     * @return \Options_Model
+     */
     public function getOption($id) {
         $this->load->model("Options_Model");
         $option = new Options_Model();
