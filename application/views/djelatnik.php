@@ -11,15 +11,9 @@
 	
 <div class="page">
     <aside>
-        <div class="side">
-            <div class="side-ticket">
-                <!-- trenutni tiket -->
-                <h3>Trenutni tiket: 45</h3>
-            </div>
-            <div class="side-ticket">
-                <!-- vrijeme dolaska sljedećeg tiketa -->
-                <h3>Vrijeme dolaska sljedećeg tiketa: 15:45h </h3>
-            </div>
+        <div class="side home">
+            <?= isset($ordinalNumber)?$ordinalNumber:"" ?>      
+            <?= isset($timeNextTicket)?$timeNextTicket:"" ?>
         </div>
     </aside>
 
