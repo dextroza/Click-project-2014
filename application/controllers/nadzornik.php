@@ -12,7 +12,9 @@ class Nadzornik extends CI_Controller {
 	public function index()
 	{
             if($this->input->post("option")){
-                $editOption = $this->load->view("components/edit_option",array(), true);
+                $id = $this->input->post("option");
+                $data["option"] = $this->data->getOption($id);
+                $editOption = $this->load->view("components/edit_option", $data, true);
                 $this->dataNadzornik["editOption"] = $editOption;
             }
            
