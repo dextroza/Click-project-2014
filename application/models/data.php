@@ -114,6 +114,15 @@ Class Data extends CI_Model
         return $dataOption;
     }
     
+    public function getOption($id) {
+        $this->load->model("Options_Model");
+        $option = new Options_Model();
+        $option->load($id);
+        return $option;
+        
+        
+    }
+    
     /**
      * get configuration to show details to client
      * @param no
