@@ -7,6 +7,7 @@ class EditOption extends CI_Controller {
         parent::__construct();
         $this->load->model('edit','',TRUE);
         $this->load->model('options_model', TRUE);
+        
        
     }
     

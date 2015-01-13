@@ -10,6 +10,7 @@
     </aside>
 </div>
 <div class="page">
+    
     <aside>
         <div class="side home">
             <?= isset($ordinalNumber)?$ordinalNumber:"" ?>

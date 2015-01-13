@@ -3,6 +3,7 @@
  * 
  */
 
+
 foreach( $options as $option ){
     $display = $option->oznaka . " - " . $option->opis;
     $bojafonta = $option->bojafonta;

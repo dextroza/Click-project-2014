@@ -42,6 +42,7 @@ class MY_Model extends CI_Model {
         
     }
     
+    
     /**
      * Delete the current record.
      */

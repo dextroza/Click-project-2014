@@ -12,6 +12,7 @@
              <button type="submit" class="list-group-item"><?= $display ?></button>
              </form>        
         
+        
             <?php 
             }?>
         <form action='nadzornik' method="post">

@@ -1,5 +1,6 @@
 <?php
 
+
 Class Data extends CI_Model
  {
     

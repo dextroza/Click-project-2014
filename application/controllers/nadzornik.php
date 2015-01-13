@@ -33,6 +33,7 @@ class Nadzornik extends CI_Controller {
 //            $optionsList["newOption"] = $newOption;
             
             
+            
             $optionsView = $this->load->view("components/options_list", $optionsList, true);
             $this->dataNadzornik["optionsList"] = $optionsView;       
             

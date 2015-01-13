@@ -19,6 +19,7 @@ class Ticket_Model extends MY_Model {
      * redni broj tiketa.
      * @var int 
      */
+    
     public $rednibroj;
     /**
      * ocekivano vrijeme dolaska (h:min).

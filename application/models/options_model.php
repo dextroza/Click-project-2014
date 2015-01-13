@@ -5,6 +5,7 @@ class Options_Model extends MY_Model {
     protected $DB_TABLE = 'opcija';
     protected  $DB_TABLE_PK = 'id';
    
+    
     /**
      *oznaka tiketa. 
      * @var string 

@@ -1,4 +1,5 @@
 <?php
+
 $id = "";
 $oznaka = "";
 $opis = "";
