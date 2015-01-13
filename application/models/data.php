@@ -52,13 +52,34 @@ Class Data extends CI_Model
      *  novi redni broj = nesto
      *  @return int rednibroj
      */    
+//    public function currentTicket() {
+//        
+//        $query = $this->db->query("SELECT MAX(rednibroj) as rednibroj FROM tiket WHERE DATE(vrijemestvaranja) = CURDATE() AND vrijemeposluz < CURTIME()");
+//        
+//        foreach($query->result() as $row){
+//          return $row->rednibroj;
+//        }
+//    }
+        /**
+         * 
+         * @return \Ticket_Model
+         */
     public function currentTicket() {
         
-        $query = $this->db->query("SELECT MAX(rednibroj) as rednibroj FROM tiket WHERE DATE(vrijemestvaranja) = CURDATE() AND vrijemeposluz < CURTIME()");
-
+        $query = $this->db->query("SELECT max(id) id FROM tiket WHERE DATE(vrijemestvaranja) = CURDATE() AND vrijemeposluz <= CURTIME()");
+        
         foreach($query->result() as $row){
-          return $row->rednibroj;
+          $id = $row->id;
         }
+        $query2 = $this->db->query("SELECT rednibroj FROM tiket WHERE id = $id");
+        foreach($query2->result() as $row){
+            $redni = $row->rednibroj;
+        }
+        $this->load->model("ticket_model");
+        $ticket  = new Ticket_Model();
+        $ticket->load($id);        
+        return $ticket;
+        
     }
     /**
      * what to Show to clients
@@ -79,6 +100,7 @@ Class Data extends CI_Model
         if ($information["ordinalNumber"] === "1" || $status==TRUE)
              {  
             $currentTicket = $this->currentTicket();
+            $currentTicket = $currentTicket->rednibroj;
             
            
             

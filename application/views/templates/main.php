@@ -22,40 +22,23 @@
     <script src="assets/js/custom.js"></script>
     <script src="../assets/js/custom.js"></script>
     <script src="../../assets/js/custom.js"></script>
+    
     <!--jquery-->
+<!--    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>  
+    <script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>  
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    
     <!--datapicker-->
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-    <!--new data picker-->
-    <link rel="stylesheet" type="text/css" href="assets/css/latoja.css">
-
+<!--    <link href="../assets/css/normalize.css" rel="stylesheet" type="text/css"/>  
+    <link href="../assets/css/datepicker.css" rel="stylesheet" type="text/css"/> -->
+   
 </head>
 <!-- header u bodyu-->
 <body>
     <?= $body ?>
     
 </body>
-<script>
-//    $(document).ready(function() {
-//    // No selection at start
-//    $('#my_select').prop("selectedIndex", -1);
-//
-//    // Set the position of the overlay
-//    var offset = $('#my_select').offset();
-//    offset.top += 3;
-//    offset.left += 3;
-//    $('#default_message_overlay').offset(offset);
-//
-//    // Remove the overlay when selection changes
-//    $('#my_select').change(function() {
-//        if ($(this).prop("selectedIndex") != -1) {
-//            $('#default_message_overlay').hide();
-//        }
-//    });
-//});
-</script>
-
 <!--footer-->
 </html>
