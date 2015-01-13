@@ -58,7 +58,10 @@ Class Data extends CI_Model
                 $noviId = $result->id +1;
             }
             $ticket->rednibroj = $ordinalNumber;
-            //ocekvrDolaska rješavamo u views/tiket ili tu funkciju
+            //ocekvrDolaska rješavamo u views/tiket ili tu u funkciji
+            $waiting = $this->avgComingTime();
+            //TODO waiting zbrojiti na vrijeme stvaranja i upisati u ocekvrdolaska
+            
             $ticket->save();
             return $noviId;
             
@@ -73,11 +76,16 @@ Class Data extends CI_Model
 		$newTicket->save();
 	 }
          
-         public function avgComingTime() {
-                 
-             
-             
-             
+        public function avgComingTime() {
+            $query = $this->db->query("SELECT SUM(vrijemecekanja) as ukupno_vrijeme FROM tiket WHERE DATE(vrijemestvaranja) = CURDATE()");
+            foreach($query->result() as $row){
+                $totalTime = $row->ukupno_vrijeme;
+            } 
+            $query = $this->db->query("SELECT COUNT(*) as ukupan_broj FROM tiket WHERE DATE(vrijemestvaranja) = CURDATE()");
+            foreach($query->result() as $row){
+                $totalNumber = $row->ukupan_broj;
+            }
+            return intval($totalTime/$totalNumber);
          }
          
         /**

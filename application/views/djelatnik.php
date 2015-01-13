@@ -24,7 +24,7 @@
             	<input type="hidden" name="next" value="1"/>
                 <button class="choice">Pomakni brojač</button>
             </form>
-            <form action="home" method="post">
+            <form action="" method="post">
                 <input type="hidden" name="repeat" value="1"/>
                 <button class="choice">Ponovi signal</button>
             </form>

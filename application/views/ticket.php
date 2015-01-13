@@ -1,4 +1,3 @@
-<?php //  var_dump($ticket); die(); ?>
 
 <div class="header" id="print">
     <div class="back"><?=$back; ?></div>
