@@ -21,6 +21,7 @@
 
 	<div class= "main" >
             <form action="" method="post">
+            	<input type="hidden" name="next" value="1"/>
                 <button class="choice">Pomakni brojač</button>
             </form>
             <form action="home" method="post">

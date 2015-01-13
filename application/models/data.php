@@ -45,7 +45,17 @@ Class Data extends CI_Model
 			return $red->suma;
 		}
 	}
-	 
+	 public function nextTicket () {
+	 	$ticket = $this->currentTicket();
+		$id = $ticket->id + 1;
+		$this->load->model("ticket_model");
+		$newTicket = new Ticket_Model(); 
+		
+		$newTicket->load($id); 
+		$newTicket->vrijemeposluz = date("H:i");
+		
+		$newTicket->save();
+	 }
     /**
      *  pronađi najveći redni broj tog dana
      *  dohvati sljedeći redni broj iz baze

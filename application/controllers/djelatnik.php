@@ -10,7 +10,10 @@ class Djelatnik extends CI_Controller {
         //$this->load->database();
     }
 	public function index()
-	{   
+	{   	
+			if ($this->input->post("next")) {
+				$this->data->nextTicket();
+			}
             $this->load->helper("url");
             $this->dataDjelatnik = $this->data->whatToShow($this->dataDjelatnik, array("status" => TRUE));
             $data = array();
