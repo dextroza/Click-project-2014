@@ -46,6 +46,12 @@ Class Data extends CI_Model
 		}
 	}
 	 
+    /**
+     *  pronađi najveći redni broj tog dana
+     *  dohvati sljedeći redni broj iz baze
+     *  novi redni broj = nesto
+     *  @return int rednibroj
+     */    
     public function currentTicket() {
         
         $query = $this->db->query("SELECT rednibroj FROM tiket WHERE id = (SELECT MAX(id) FROM tiket)");
@@ -73,6 +79,9 @@ Class Data extends CI_Model
         if ($information["ordinalNumber"] === "1" || $status==TRUE)
              {  
             $currentTicket = $this->currentTicket();
+            
+           
+            
             
                  $ordinalNumberView = $this->load->view("components/information/current_ticket", 
                                                         array("ordinalNumber" => $currentTicket), 

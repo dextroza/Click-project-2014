@@ -1,3 +1,5 @@
+<?php //  var_dump($ticket); die(); ?>
+
 <div class="header" id="print">
     <div class="back"><?=$back; ?></div>
     <h1>Ispis tiketa</h1>
@@ -29,7 +31,7 @@
         </tr>
         <tr>
             <td>ID</td>
-            <td><?= $ticket->getId(); ?></td>
+            <td><?= $ticket->id; ?></td>
         </tr>
     </table>  
   </div>

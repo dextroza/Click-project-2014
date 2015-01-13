@@ -25,18 +25,20 @@ class Ticket extends CI_Controller {
             $ticket->oznaka = $this->input->post("choice");
             $this->load->database();
             //nalazimo najvisi redni broj i dodjeljujemo tiketu za 1 visi r.broj
-            $query = $this->db->query("SELECT MAX(rednibroj) as max_redni FROM tiket ");
+            $query = $this->db->query("SELECT MAX(rednibroj) as max_redni, MAX(id) as id FROM tiket WHERE DATE(vrijemestvaranja) = CURDATE() ");
             foreach($query->result() as $result){
                 $ordinalNumber = $result->max_redni + 1;
+                $id = $result->id +1;
             }
             $ticket->rednibroj = $ordinalNumber;
-            //ocekvrDolaska rješavamo u views/tiket ili tu funkcija
-            //vrijemestvaranja je default curr. timestamp
+            //ocekvrDolaska rješavamo u views/tiket ili tu funkciju
             $ticket->save();
-            $this->db->close();
-
+           
+            //loadamo zadnji tiket iz baze u model - to je taj kojeg je korisnik stistnuo    
             $dataTicket = array();
-            $dataTicket["ticket"] = $ticket;
+            $loadTicket = new Ticket_Model();
+            $loadTicket->load($id);
+            $dataTicket["ticket"] = $loadTicket;
             $dataTicket["back"] = anchor("", "Back");
             $printView = $this->load->view("ticket", $dataTicket, true);
             $dataPrint["body"] = $printView;
