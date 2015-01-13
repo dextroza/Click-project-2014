@@ -1,5 +1,5 @@
 <div class="header" id="nadzornik">
-    <div class="back"><?=$back; ?></div>
+    <div class="back"><?= $back; ?></div>
     <h1>Nadzornik</h1>
     <aside>
     	<div class="side home">
