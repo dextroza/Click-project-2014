@@ -54,7 +54,7 @@ Class Data extends CI_Model
      */    
     public function currentTicket() {
         
-        $query = $this->db->query("SELECT rednibroj FROM tiket WHERE id = (SELECT MAX(id) FROM tiket)");
+        $query = $this->db->query("SELECT MAX(rednibroj) as rednibroj FROM tiket WHERE DATE(vrijemestvaranja) = CURDATE() AND vrijemeposluz < CURTIME()");
 
         foreach($query->result() as $row){
           return $row->rednibroj;
