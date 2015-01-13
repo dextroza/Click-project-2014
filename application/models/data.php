@@ -20,11 +20,6 @@ Class Data extends CI_Model
             return false;
         }
     }
-    /**
-     * define what information to show to client
-     * @param array $information
-     * @return array dataHome
-     */
     
     /**
      * currentTicket
