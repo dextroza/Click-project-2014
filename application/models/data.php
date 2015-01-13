@@ -46,6 +46,12 @@ Class Data extends CI_Model
           return $row->rednibroj;
         }
     }
+    /**
+     * what to Show to clients
+     * @param array $data
+     * @param array $optional
+     * @return array
+     */
     public function whatToShow($data, $optional = array()) {
         $status = isset($optional["status"]) ? TRUE:FALSE;
         $information = isset($optional["information"]) ? $optional["information"]:array("ordinalNumber" => 0,
@@ -102,14 +108,16 @@ Class Data extends CI_Model
 
     /**
      * get all options for clients
+     * @param boolean means employee
      * @return array dataOption
      */
-    public function getAllOptions() {
+    public function getAllOptions($status = FALSE) {
         $dataOption = array();
         $this->load->model("Options_Model");
         $options = $this->Options_Model->get();
         foreach ($options as $option) {
-            $dataOption["options"][] = $option;
+            if ($option->status != 0 || $status = TRUE)
+                $dataOption["options"][] = $option;
         }
         return $dataOption;
     }

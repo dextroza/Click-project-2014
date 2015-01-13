@@ -13,7 +13,10 @@ class Nadzornik extends CI_Controller {
 	{
             if($this->input->post("option")){
                 $id = $this->input->post("option");
-                $data["option"] = $this->data->getOption($id);
+                if ($id !== "new")
+                    $data["option"] = $this->data->getOption($id);
+                
+                else $data = array();
                 $editOption = $this->load->view("components/edit_option", $data, true);
                 $this->dataNadzornik["editOption"] = $editOption;
             }
@@ -22,18 +25,19 @@ class Nadzornik extends CI_Controller {
             $this->load->helper("form");
             
             $optionsList = array();
-            $dataOption = $this->data->getAllOptions();
+            $dataOption = $this->data->getAllOptions(TRUE);
             $optionsList["dataOption"] = $dataOption;
             //var_dump($optionsList["dataOption"]["options"][0]);
-            $newOption = anchor("newOption", "Dodaj novu opciju", 'class="list-group-item"');  
-            $optionsList["newOption"] = $newOption;
+            
+//            $newOption = anchor("newOption", "Dodaj novu opciju", 'class="list-group-item"');  
+//            $optionsList["newOption"] = $newOption;
             
             
             $optionsView = $this->load->view("components/options_list", $optionsList, true);
             $this->dataNadzornik["optionsList"] = $optionsView;       
             
             $this->dataNadzornik = $this->data->whatToShow($this->dataNadzornik, array("status" => TRUE));
-            
+            $this->dataNadzornik["back"] = anchor("", "Back");
             $nadzornik = $this->load->view('nadzornik', $this->dataNadzornik, true);
             $data = array();
             $data["body"] = $nadzornik;

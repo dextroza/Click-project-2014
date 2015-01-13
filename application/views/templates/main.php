@@ -32,5 +32,24 @@
     <?= $body ?>
     
 </body>
+<script>
+//    $(document).ready(function() {
+//    // No selection at start
+//    $('#my_select').prop("selectedIndex", -1);
+//
+//    // Set the position of the overlay
+//    var offset = $('#my_select').offset();
+//    offset.top += 3;
+//    offset.left += 3;
+//    $('#default_message_overlay').offset(offset);
+//
+//    // Remove the overlay when selection changes
+//    $('#my_select').change(function() {
+//        if ($(this).prop("selectedIndex") != -1) {
+//            $('#default_message_overlay').hide();
+//        }
+//    });
+//});
+</script>
 <!--footer-->
 </html>

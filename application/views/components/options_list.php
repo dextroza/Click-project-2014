@@ -14,8 +14,12 @@
         
             <?php 
             }?>
+        <form action='nadzornik' method="post">
+             <input type="hidden" name="option" value="new"/>
+             <button type="submit" id="addOption" class="list-group-item">Dodaj novu opciju</button>
+             </form>
 <!--        <a href="#" class="list-group-item">A</a>
         <a href="#" class="list-group-item">B</a>
         <a href="#" class="list-group-item">C</a>-->
-        <?= isset($newOption)?$newOption:"" ?>
+        <?php //echo isset($newOption)?$newOption:"" ?>
 </div>

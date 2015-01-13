@@ -1,4 +1,5 @@
-<?php header("Content-type: text/css"); ?>
+<?php header("Content-type: text/css");
+?>
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -24,7 +25,7 @@ body{
     padding-top: 10px;    
 }
 #nadzornik{
-    height:200px;
+    height:150px;
 }
 /* ispis tiketa */
 #print{
@@ -42,14 +43,17 @@ body{
 
 .main {
     margin-left: 500px;
+    
 }
 
 .mainNadzornik{
     float:left;
 }
 .choice{
-    width: 400px;
-    height: 100px;
+    /*width:400px; height:100px;   default */
+    max-width: 500px; 
+    height: 80px;
+    
     background-color: #F2F2F2;
     border: 3px solid black;
     margin: 10px 10px 10px 10px;
@@ -118,6 +122,29 @@ body{
     /*padding-top:0px;*/
     
 }
+.editOption{
+    font-size:20px;
+}
+#default_message_overlay{
+ position: absolute;
+    display: block;
+    width: -10px;
+    color: grey;
+    font-size:15px;
+
+}
+#addOption {
+    padding-left:250px;
+}
+.editHead{
+   padding-left:20px;
+   padding-right:18px;
+   margin-left:15px;
+}
+.form-group{
+     margin: -20px 0px 0px 0px;
+}
+
 
 .ticket {
     font-size: 18px;
@@ -142,4 +169,23 @@ body{
     font-family: 'Rammetto One', cursive;
     font-family: 'Raleway', sans-serif;
     font-family: 'arial', sans-serif;
+}
+
+/*boje */
+.dvadeset{
+    font-size:20px;
+}
+
+.dvadesetpet{
+    font-size:25px;
+}
+
+.trideset{
+    font-size:30px;
+}
+.tridesetpet{
+    font-size:35px;
+}
+.cetrdeset{
+    font-size:40px;
 }

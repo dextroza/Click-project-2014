@@ -16,7 +16,8 @@ class MY_Model extends CI_Model {
      * Update record.
      */
     private function update() {
-        $this->db->update($this->DB_TABLE, $this, $this->DB_TABLE_PK);
+        $this->db->update($this->DB_TABLE, $this, "$this->DB_TABLE_PK = $this->id");
+        
     }
     
     /**
@@ -38,15 +39,19 @@ class MY_Model extends CI_Model {
             $this->DB_TABLE_PK => $id,
         ));
         $this->populate($query->row());
+        
     }
     
     /**
      * Delete the current record.
      */
     public function delete() {
-        $this->db->delete($this->DB_TABLE, array(
-           $this->DB_TABLE_PK => $this->{$this->DB_TABLE_PK}, 
-        ));
+//        $this->db->delete($this->DB_TABLE, array(
+//           $this->DB_TABLE_PK => $this->{$this->DB_TABLE_PK}, 
+//        ));
+        var_dump("fdsafdsfas",$this->DB_TABLE, $this->DB_TABLE_PK);
+        die();
+        $this->db->query("DELETE FROM $this->DB_TABLE WHERE id = $this->DB_TABLE_PK");
         unset($this->{$this->DB_TABLE_PK});
     }
     
