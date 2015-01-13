@@ -20,11 +20,15 @@
     </aside>
 
 	<div class= "main" >
-		<div class="choice">
-            <div class="text">Pomakni brojač</div>
-       	</div>
-		<div class="choice">
-            <div class="text">Ponovi signal</div>
-        </div>
+            <form action="" method="post">
+                <button class="choice">Pomakni brojač</button>
+            </form>
+            <form action="home" method="post">
+                <input type="hidden" name="repeat" value="1"/>
+                <button class="choice">Ponovi signal</button>
+            </form>
+                
+		
+
  	</div>
 </div>    

@@ -32,16 +32,12 @@ class Home extends CI_Controller {
 	public function index()
 	{
            
+            //provjera djelatnika
             
-            /**
-             * problem sa ispisom vremena stvaranja jer je zapravo varijabla prazna zbog
-             * spremanja vrijednosti u nju metodom save()
-             * 
-             * potrebno omogućiti novi library s database funkcijama koje bi se pozivale možda
-             *  tu za to vrijeme stvaranj ili nešto drugo
-             */
+            if ($this->input->post("repeat")){
+                $repeat = true;
+            }
             
-            //admin i djelatnik          
             $this->load->helper(array('form'));
             $loginView = $this->load->view("components/login_view", array(),true);
             $this->dataHome["loginView"] = $loginView;
@@ -51,8 +47,12 @@ class Home extends CI_Controller {
             $this->dataHome["options"] = $optionsView;
 //
             $this->information = $this->data->getConfig();
-            $this->dataHome = $this->data->whatToShow($this->dataHome, array("information" =>$this->information));
-//          $this->whatToShow();
+            if(isset($repeat))
+                $this->dataHome = $this->data->whatToShow($this->dataHome, array("information" =>$this->information,
+                                                                                 "repeat" => $repeat));
+            else 
+                $this->dataHome = $this->data->whatToShow($this->dataHome, array("information" =>$this->information,
+                                                                                 ));
 //
             $home = $this->load->view('home', $this->dataHome, true);
             $data = array();

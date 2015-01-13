@@ -69,6 +69,15 @@ body{
     cursor:pointer;
 }
 
+.repeat{
+    padding-top:20px;
+    background-color:red;
+    color:white !important;
+}
+.repeat h3{
+    font-size:30px;
+}
+
 .text {
     text-align:center;
     margin: 0px 0px 0px 0px;

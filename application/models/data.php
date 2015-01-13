@@ -95,6 +95,7 @@ Class Data extends CI_Model
                                                                                         "timeNextTicket" =>0,
                                                                                         "workTime" => 0,
                                                                                         ); 
+        $repeat = isset($optional["repeat"])?TRUE:FALSE;
         
         
         if ($information["ordinalNumber"] === "1" || $status==TRUE)
@@ -106,7 +107,9 @@ Class Data extends CI_Model
             
             
                  $ordinalNumberView = $this->load->view("components/information/current_ticket", 
-                                                        array("ordinalNumber" => $currentTicket), 
+                                                        array("ordinalNumber" => $currentTicket,
+                                                              "repeat" => $repeat,
+                                                            ), 
                                                         true);
                  $data ["ordinalNumber"] = $ordinalNumberView;
              }
