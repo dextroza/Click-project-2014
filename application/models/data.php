@@ -56,20 +56,7 @@ Class Data extends CI_Model
 		
 		$newTicket->save();
 	 }
-    /**
-     *  pronađi najveći redni broj tog dana
-     *  dohvati sljedeći redni broj iz baze
-     *  novi redni broj = nesto
-     *  @return int rednibroj
-     */    
-//    public function currentTicket() {
-//        
-//        $query = $this->db->query("SELECT MAX(rednibroj) as rednibroj FROM tiket WHERE DATE(vrijemestvaranja) = CURDATE() AND vrijemeposluz < CURTIME()");
-//        
-//        foreach($query->result() as $row){
-//          return $row->rednibroj;
-//        }
-//    }
+         
         /**
          * 
          * @return \Ticket_Model
