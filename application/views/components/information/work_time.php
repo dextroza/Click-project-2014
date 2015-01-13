@@ -1,4 +1,4 @@
 <div>
-    Početak rada: <?= $workTime ?>
+    Početak rada: <?= isset($workTime)?$workTime . "h":"" ?>
 </div>
 
