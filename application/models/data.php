@@ -45,10 +45,8 @@ Class Data extends CI_Model
 		$id = $ticket->id + 1;
 		$this->load->model("ticket_model");
 		$newTicket = new Ticket_Model(); 
-		
 		$newTicket->load($id); 
 		$newTicket->vrijemeposluz = date("H:i");
-		
 		$newTicket->save();
 	 }
          
