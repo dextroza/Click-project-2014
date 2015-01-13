@@ -124,15 +124,19 @@ Class Data extends CI_Model
         $dataOption = array();
         $this->load->model("Options_Model");
         $options = $this->Options_Model->get();
+        if (count($options) == 0) return;
         foreach ($options as $option) {
-            if ($option->status != 0 || $status = TRUE)
+            if ($option->velfonta == 0) continue;
+            if ($option->status != 0  || $status == TRUE)
                 $dataOption["options"][] = $option;
         }
+        //ako ima opcija, ali su sve safe delete :)
+        if (count($dataOption) == 0) return;
         return $dataOption;
     }
     
     /**
-     * 
+     * get one option
      * @param int $id
      * @return \Options_Model
      */

@@ -56,7 +56,7 @@ body{
 <!--    max-width: 500px; 
     height: 80px;-->
     
-    background-color: #fff; <!--#F2F2F2;-->
+    background-color: #F2F2F2;
     border: 3px solid black;
     margin: 10px 10px 10px 10px;
     color: blue;

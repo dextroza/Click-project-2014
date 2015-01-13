@@ -41,7 +41,7 @@ $sizes = ["20", "25", "30","35", "40"];
             </select><br>
             <!--<span id="default_message_overlay">Prikazati</span>-->
             <select id="my_select" style="width:100%" name="status" class="form-control">
-                <option selected disabled >--Prikazati--</option>
+                <option selected disabled >-- Opcija prikazivanja --</option>
                 <option <?= $status == "1"?"selected":"" ?> value="1">Da</option>
                 <option <?= $status == "0"?"selected":"" ?> value="0">Ne</option>
             </select>
