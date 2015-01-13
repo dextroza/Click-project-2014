@@ -30,6 +30,13 @@ Class Data extends CI_Model
      * 
      * @return int redni broj
      */
+	public function workTime () {
+		$query = $this->db->query("SELECT pocetakrada FROM informacije where DATE(vrij_datum) = CURDATE()");
+		
+		foreach($query->result() as $red) {
+			return $red->pocetakrada;
+		}
+	}
 	public function sumTickets () {
 		$query = $this->db->query("SELECT COUNT(id) as suma FROM tiket where DATE(vrijemestvaranja) = CURDATE()");
 		
@@ -96,8 +103,9 @@ Class Data extends CI_Model
              }
         if ($information["workTime"] === "1" || $status==TRUE)
              {  
+			 	$workTime = $this->workTime();
                  $workTimeView = $this->load->view("components/information/work_time", 
-                                                        array("workTime" => "08h"), 
+                                                        array("workTime" => $workTime), 
                                                         true);
                  $data ["workTime"] = $workTimeView;
              }
