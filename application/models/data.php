@@ -72,7 +72,7 @@ Class Data extends CI_Model
 		$this->load->model("ticket_model");
 		$newTicket = new Ticket_Model(); 
 		$newTicket->load($id); 
-		$newTicket->vrijemeposluz = date("H:i");
+		$newTicket->vrijemeposluz = date("Y-m-d H:i:sa");
 		$newTicket->save();
 	 }
          
