@@ -51,11 +51,12 @@ body{
     float:left;
 }
 .choice{
-    /*width:400px; height:100px;   default */
-    max-width: 500px; 
-    height: 80px;
+    width:400px; 
+    height:100px;
+<!--    max-width: 500px; 
+    height: 80px;-->
     
-    background-color: #F2F2F2;
+    background-color: #fff; <!--#F2F2F2;-->
     border: 3px solid black;
     margin: 10px 10px 10px 10px;
     color: blue;
@@ -97,7 +98,7 @@ body{
 
 
 .opcije {
-   	width: 400px;
+    width: 400px;
     border: 3px solid black;
     margin: 10px 10px 10px 10px;
     color: blue; 
