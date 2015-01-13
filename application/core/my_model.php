@@ -8,7 +8,9 @@ class MY_Model extends CI_Model {
      * Create record.
      */
     private function insert() {
-        $this->db->insert($this->DB_TABLE, $this);
+       // $this->db->insert($this->DB_TABLE, $this);
+	   $this->db->query("INSERT INTO tiket (poslodavac, oznaka, rednibroj,vrijemestvaranja) "
+                . " VALUES('$this->poslodavac', '$this->oznaka', $this->rednibroj, NOW())");
         $this->DB_TABLE_PK = $this->db->insert_id();    
     }
     
