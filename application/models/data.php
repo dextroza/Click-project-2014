@@ -40,6 +40,29 @@ Class Data extends CI_Model
 			return $red->suma;
 		}
 	}
+        
+        /**
+         * get new ticket for client
+         * @param string $choice
+         * @return int id of last ticket
+         */
+        public function newTicket($choice) {
+             $this->load->model('ticket_model');
+            $ticket = new Ticket_Model();
+            $ticket->oznaka = $choice;
+            //nalazimo najvisi redni broj i dodjeljujemo tiketu za 1 visi r.broj
+            $query = $this->db->query("SELECT MAX(rednibroj) as max_redni, MAX(id) as id "
+                                        . "FROM tiket WHERE DATE(vrijemestvaranja) = CURDATE() ");
+            foreach($query->result() as $result){
+                $ordinalNumber = $result->max_redni + 1 <= 999  ? $result->max_redni + 1 : 1 ;
+                $noviId = $result->id +1;
+            }
+            $ticket->rednibroj = $ordinalNumber;
+            //ocekvrDolaska rješavamo u views/tiket ili tu funkciju
+            $ticket->save();
+            return $noviId;
+            
+        }
 	 public function nextTicket () {
 	 	$ticket = $this->currentTicket();
 		$id = $ticket->id + 1;
@@ -49,6 +72,13 @@ Class Data extends CI_Model
 		$newTicket->vrijemeposluz = date("H:i");
 		$newTicket->save();
 	 }
+         
+         public function avgComingTime() {
+                 
+             
+             
+             
+         }
          
         /**
          * 
