@@ -31,6 +31,18 @@ class Ticket_Model extends MY_Model {
      * @var date
      */
     public $vrijemestvaranja;
+    
+    /**
+     *real minutes to waiting
+     * @var int
+     */
+    public $vrijemecekanja;
+    
+    /**
+     * vrijeme kad tiket dođe na red
+     * @var timestamp
+     */
+    public $vrijemeposluz;
    
     public function save(){
          if (isset($this->{$this->DB_TABLE_PK})) {

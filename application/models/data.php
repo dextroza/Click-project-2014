@@ -4,22 +4,6 @@
 Class Data extends CI_Model
  {
     
-    function test() {
-
-        $this->db->select('id, username, password');
-        $this->db->from('korisnici');
-        $this->db->where('username', $username);
-        $this->db->where('password', MD5($password));
-        $this->db->limit(1);
-
-        $query = $this->db->get();
-
-        if ($query->num_rows() == 1) {
-            return $query->result();
-        } else {
-            return false;
-        }
-    }
     
     /**
      * currentTicket
@@ -48,6 +32,7 @@ Class Data extends CI_Model
          */
         public function newTicket($choice) {
              $this->load->model('ticket_model');
+             $this->load->model("information");
             $ticket = new Ticket_Model();
             $ticket->oznaka = $choice;
             //nalazimo najvisi redni broj i dodjeljujemo tiketu za 1 visi r.broj
@@ -57,25 +42,38 @@ Class Data extends CI_Model
                 $ordinalNumber = $result->max_redni + 1 <= 999  ? $result->max_redni + 1 : 1 ;
                 $noviId = $result->id +1;
             }
+            
             $ticket->rednibroj = $ordinalNumber;
+            
+            
             //ocekvrDolaska rješavamo u views/tiket ili tu u funkciji
             $waiting = $this->avgComingTime();
-            //TODO waiting zbrojiti na vrijeme stvaranja i upisati u ocekvrdolaska
             
-            $ticket->save(); //spremimio u bazu da se automatski spremi vrijemestvaranja po defaultu
-//            $novi = new Ticket_Model();
-//            $novi->load($noviId);
-////            $ticket->load($noviId);//loadamo isti taj tiket kako bi računali ocekvrdolaska
-//            $created = $novi->vrijemestvaranja;
-//            $unix = mktime(date("H", $created), date("i", $created), 00, date("n", $created),
-//                           date("j", $created), date("Y", $created));
-//            var_dump($unix);die();
+            $ticket->save(); 
+            //novo
+            // //TODO waiting zbrojiti na vrijeme stvaranja i upisati u ocekvrdolaska
+            //spremimio u bazu da se automatski spremi vrijemestvaranja po defaultu
+           
+            $newTicket = new Ticket_Model();
+            $newTicket->load($noviId);//loadamo isti taj tiket kako bi računali ocekvrdolaska
+            $created = $newTicket->vrijemestvaranja;
+            $unixcreated = strtotime($created);
+            $secondsToWait = $waiting * 60;
+            $expectedTime = $unixcreated + $secondsToWait; //unixtime
+             
+            $stringExpectedTime = date('Y-m-d H:i:s',$expectedTime);
+            $newTicket->ocekvrdolaska = $stringExpectedTime;
+            $newTicket->save();
+            
+            //kraj novog
+            
             return $noviId;
             
         }
         /**
-         * djelatnik works on button nextTicket
-         * vrijemeposluz(nextTicket in table) = now();
+         * djelatnik works on button nextTicket, writes real
+         *  waiting time to next ticket
+         * 
          */
 	 public function nextTicket () {
 	 	$ticket = $this->currentTicket();
@@ -83,11 +81,26 @@ Class Data extends CI_Model
 		$this->load->model("ticket_model");
 		$newTicket = new Ticket_Model(); 
 		$newTicket->load($id); 
-		$newTicket->vrijemeposluz = date("Y-m-d H:i:sa");
+                $newTicket->vrijemeposluz = date("Y-m-d H:i:s");
+                $currentTime = date("Y-m-d H:i:s");
+                
+//               novo
+                $created = $newTicket->vrijemestvaranja;
+                $unixCreated = strtotime($created);
+                $unixCurrent = strtotime($currentTime);
+            
+                $waitingTime = $unixCurrent - $unixCreated;//seconds
+               
+                $waitingTime  /= 60;
+                $newTicket->vrijemecekanja = $waitingTime;
+//               kraj novog
 		$newTicket->save();
 	 }
          
-         
+        /**
+         * find expected waiting time for new client
+         * @return int waiting time minutes
+         */ 
         public function avgComingTime() {
             $query = $this->db->query("SELECT SUM(vrijemecekanja) as ukupno_vrijeme FROM tiket WHERE DATE(vrijemestvaranja) = CURDATE() AND vrijemeposluz IS NOT NULL");
             foreach($query->result() as $row){
@@ -100,9 +113,22 @@ Class Data extends CI_Model
 			
             return intval($totalTime/$totalNumber);
          }
+         /**
+          * return average coming time for next client
+          * @return date timestamp
+          */
+         public function avgNextTime() {
+             $this->load->model("ticket_model");
+             $nextTicket = new Ticket_Model();
+             $currentTicket = $this->currentTicket();
+             $nextId = $currentTicket->id + 1;
+             $nextTicket->load($nextId);
+             $avgNextTime = $nextTicket->ocekvrdolaska;
+             return $avgNextTime;
+         }
          
         /**
-         * 
+         * return current Ticket model
          * @return \Ticket_Model
          */
     public function currentTicket() {
@@ -172,9 +198,11 @@ Class Data extends CI_Model
              }
         if ($information["timeNextTicket"] === "1" || $status==TRUE)
              {  
+             $avgComingTime = date("H:i",strtotime($this->avgNextTime())); //results in H:min
+             
                  
                  $timeNextTicketView = $this->load->view("components/information/time_next_ticket", 
-                                                        array("timeNextTicket" => "19:56h"), 
+                                                        array("timeNextTicket" => $avgComingTime, ), 
                                                         true);
                  $data ["timeNextTicket"] = $timeNextTicketView;
              }

@@ -7,6 +7,7 @@ class Nadzornik extends CI_Controller {
         {
         parent::__construct();
         $this->load->model('data','',TRUE);
+        $this->load->model('izvjestaj_model','',TRUE);
         }
    
 	public function index()
@@ -27,7 +28,8 @@ class Nadzornik extends CI_Controller {
             //when click on izvještaj
             else if ($this->input->post("report")){
                 $data = array();
-                $report = $this->load->view("components/report", array(), true);
+                $data["months"] = $this->izvjestaj_model->makeMonths();
+                $report = $this->load->view("components/report", $data, true);
                 $this->dataNadzornik["report"] = $report;
             }
             else if($this->input->post("information")){

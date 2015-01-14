@@ -32,7 +32,7 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
-          
+         
 //            provjera djelatnika
 //           for($index = 11; $index <= 74; $index++ ){
 //               $this->db->query("INSERT INTO tiket(poslodavac, oznaka, rednibroj, vrijemecekanja,"
