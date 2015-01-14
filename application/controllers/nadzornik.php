@@ -50,7 +50,7 @@ class Nadzornik extends CI_Controller {
             $optionsView = $this->load->view("components/options_list", $optionsList, true);
             $this->dataNadzornik["optionsList"] = $optionsView;       
             
-            $this->dataNadzornik = $this->data->whatToShow($this->dataNadzornik, array("status" => TRUE));
+            $this->dataNadzornik = $this->data->whatToShow($this->dataNadzornik, array("status" => TRUE,));
             $this->dataNadzornik["back"] = anchor("", "Back");
             $nadzornik = $this->load->view('nadzornik', $this->dataNadzornik, true);
             $data = array();

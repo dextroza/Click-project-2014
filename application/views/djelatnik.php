@@ -1,6 +1,6 @@
 <div class="header">
     <div class="back"><?= $back; ?></div>
-    <h1>Djelatnik</h1>
+    <h1>Upravljanje redom</h1>
     <aside>
     	<div class="side home">
      		<?= isset($dateTime)?$dateTime:"" ?>

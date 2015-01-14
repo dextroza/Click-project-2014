@@ -123,8 +123,9 @@ Class Data extends CI_Model
                                                                                         "timeNextTicket" =>0,
                                                                                         "workTime" => 0,
                                                                                         ); 
-        $repeat = isset($optional["repeat"])?TRUE:FALSE;
-        
+//        $repeat = isset($optional["repeat"])?TRUE:FALSE;
+           
+          $repeat = isset($optional["repeat"]) && $optional["repeat"] == TRUE?TRUE:FALSE;
         
         if ($information["ordinalNumber"] === "1" || $status==TRUE)
              {  

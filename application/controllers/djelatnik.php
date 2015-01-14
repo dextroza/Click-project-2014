@@ -10,12 +10,18 @@ class Djelatnik extends CI_Controller {
         //$this->load->database();
     }
 	public function index()
-	{   	
+	{   $repeatSignal = false;	
+            if ($this->input->post("repeat")){
+                $repeatSignal = true;
+            }
 			if ($this->input->post("next")) {
 				$this->data->nextTicket();
 			}
             $this->load->helper("url");
-            $this->dataDjelatnik = $this->data->whatToShow($this->dataDjelatnik, array("status" => TRUE));
+            $this->dataDjelatnik = $this->data->whatToShow($this->dataDjelatnik, array("status" => TRUE,
+                                                                                       "repeat" => $repeatSignal,
+                                                                                      ));
+            
             $data = array();
             $this->dataDjelatnik["back"] = anchor("", "Back");
             $djelatnik = $this->load->view('djelatnik', $this->dataDjelatnik, true);

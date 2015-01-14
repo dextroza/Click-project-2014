@@ -32,11 +32,22 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
-           
-            //provjera djelatnika
-            
+          
+//            provjera djelatnika
+//           for($index = 11; $index <= 74; $index++ ){
+//               $this->db->query("INSERT INTO tiket(poslodavac, oznaka, rednibroj, vrijemecekanja,"
+//                       . " vrijemestvaranja, vrijemeposluz, ocekvrdolaska) SELECT poslodavac, oznaka,"
+//                       . " rednibroj, vrijemecekanja, DATE_ADD(vrijemestvaranja, INTERVAL $index DAY),"
+//                       . " DATE_ADD(vrijemeposluz, INTERVAL $index DAY), "
+//                       . "DATE_ADD(ocekvrdolaska, INTERVAL $index DAY) FROM tiket LIMIT 51
+//                                ");
+//           }
+//           die();
+         
+//           $this->db->query("DELETE from tiket WHERE id > 102"); die();
+            $repeatSignal = false;
             if ($this->input->post("repeat")){
-                $repeat = true;
+                $repeatSignal = true;
             }
             
             $this->load->helper(array('form'));
@@ -48,13 +59,8 @@ class Home extends CI_Controller {
             $this->dataHome["options"] = $optionsView;
 //
             $this->information = $this->data->getConfig();
-            if(isset($repeat))
-                $this->dataHome = $this->data->whatToShow($this->dataHome, array("information" =>$this->information,
-                                                                                 "repeat" => $repeat));
-            else 
-                $this->dataHome = $this->data->whatToShow($this->dataHome, array("information" =>$this->information,
-                                                                                 ));
-//
+            $this->dataHome = $this->data->whatToShow($this->dataHome, array("information" =>$this->information,
+                                                                                 "repeat" => $repeatSignal));  
             $home = $this->load->view('home', $this->dataHome, true);
             $data = array();
             $data["body"] = $home;
