@@ -93,10 +93,11 @@ Class Data extends CI_Model
             foreach($query->result() as $row){
                 $totalTime = $row->ukupno_vrijeme;
             } 
-            $query = $this->db->query("SELECT COUNT(*) as ukupan_broj FROM tiket WHERE DATE(vrijemestvaranja) = CURDATE()");
+            $query = $this->db->query("SELECT COUNT(*) as ukupan_broj FROM tiket WHERE DATE(vrijemestvaranja) = CURDATE() AND vrijemeposluz IS NOT NULL");
             foreach($query->result() as $row){
                 $totalNumber = $row->ukupan_broj;
             }
+			
             return intval($totalTime/$totalNumber);
          }
          
