@@ -145,14 +145,20 @@ body{
    padding-right:18px;
    margin-left:15px;
 }
-
+.infoHead{
+    font-size:15px;
+    padding-right:105px;
+}
 .information {
-    font-size:15px !important;
+    font-size:13px !important;
     width:100% !important;
-    margin-bottom:10px !important;
+    margin-bottom:5px !important;
 }
 .form-group{
      margin: -20px 0px 0px 0px;
+}
+#form-group{
+    margin: -0px 0px 0px 0px;
 }
 
 
