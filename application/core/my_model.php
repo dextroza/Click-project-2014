@@ -7,11 +7,10 @@ class MY_Model extends CI_Model {
     /**
      * Create record.
      */
-    private function insert() {
-
-        //$this->db->insert($this->DB_TABLE, $this);
-        $this->db->query("INSERT INTO tiket (poslodavac, oznaka, rednibroj,vrijemestvaranja) "
-                . " VALUES('$this->poslodavac', '$this->oznaka', $this->rednibroj, NOW())");
+    private function insert() {      
+        $this->db->insert($this->DB_TABLE, $this);
+//        $this->db->query("INSERT INTO tiket (poslodavac, oznaka, rednibroj,vrijemestvaranja) "
+//                . " VALUES('$this->poslodavac', '$this->oznaka', $this->rednibroj, NOW())");
         $this->DB_TABLE_PK = $this->db->insert_id();    
     }
     
@@ -53,8 +52,8 @@ class MY_Model extends CI_Model {
 //        $this->db->delete($this->DB_TABLE, array(
 //           $this->DB_TABLE_PK => $this->{$this->DB_TABLE_PK}, 
 //        ));
-        var_dump("fdsafdsfas",$this->DB_TABLE, $this->DB_TABLE_PK);
-        die();
+//        var_dump("fdsafdsfas",$this->DB_TABLE, $this->DB_TABLE_PK);
+//        die();
         $this->db->query("DELETE FROM $this->DB_TABLE WHERE id = $this->DB_TABLE_PK");
         unset($this->{$this->DB_TABLE_PK});
     }

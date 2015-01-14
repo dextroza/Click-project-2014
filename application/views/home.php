@@ -7,6 +7,8 @@
      		<?= isset($dateTime)?$dateTime:"" ?>
     		<?= isset($workTime)?$workTime:"" ?>
             <?= isset($totalTickets)?$totalTickets:"" ?>
+            <?= isset($avgWaiting)?$avgWaiting:"" ?>
+            
         </div>
     </aside>
 </div>

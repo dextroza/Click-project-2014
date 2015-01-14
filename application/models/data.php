@@ -62,10 +62,21 @@ Class Data extends CI_Model
             $waiting = $this->avgComingTime();
             //TODO waiting zbrojiti na vrijeme stvaranja i upisati u ocekvrdolaska
             
-            $ticket->save();
+            $ticket->save(); //spremimio u bazu da se automatski spremi vrijemestvaranja po defaultu
+//            $novi = new Ticket_Model();
+//            $novi->load($noviId);
+////            $ticket->load($noviId);//loadamo isti taj tiket kako bi računali ocekvrdolaska
+//            $created = $novi->vrijemestvaranja;
+//            $unix = mktime(date("H", $created), date("i", $created), 00, date("n", $created),
+//                           date("j", $created), date("Y", $created));
+//            var_dump($unix);die();
             return $noviId;
             
         }
+        /**
+         * djelatnik works on button nextTicket
+         * vrijemeposluz(nextTicket in table) = now();
+         */
 	 public function nextTicket () {
 	 	$ticket = $this->currentTicket();
 		$id = $ticket->id + 1;
@@ -75,6 +86,7 @@ Class Data extends CI_Model
 		$newTicket->vrijemeposluz = date("Y-m-d H:i:sa");
 		$newTicket->save();
 	 }
+         
          
         public function avgComingTime() {
             $query = $this->db->query("SELECT SUM(vrijemecekanja) as ukupno_vrijeme FROM tiket WHERE DATE(vrijemestvaranja) = CURDATE()");
@@ -122,6 +134,7 @@ Class Data extends CI_Model
                                                                                         "totalTickets" => 0,
                                                                                         "timeNextTicket" =>0,
                                                                                         "workTime" => 0,
+                                                                                        "avgWaiting" => 0,        
                                                                                         ); 
 //        $repeat = isset($optional["repeat"])?TRUE:FALSE;
            
@@ -132,9 +145,7 @@ Class Data extends CI_Model
             $currentTicket = $this->currentTicket();
             $currentTicket = $currentTicket->rednibroj;
             
-           
-            
-            
+                       
                  $ordinalNumberView = $this->load->view("components/information/current_ticket", 
                                                         array("ordinalNumber" => $currentTicket,
                                                               "repeat" => $repeat,
@@ -160,6 +171,7 @@ Class Data extends CI_Model
              }
         if ($information["timeNextTicket"] === "1" || $status==TRUE)
              {  
+                 
                  $timeNextTicketView = $this->load->view("components/information/time_next_ticket", 
                                                         array("timeNextTicket" => "19:56h"), 
                                                         true);
@@ -173,6 +185,15 @@ Class Data extends CI_Model
                                                         true);
                  $data ["workTime"] = $workTimeView;
              }
+        if ($information["avgWaiting"] === "1" || $status==TRUE)
+             {  
+			 	$avgWaiting = $this->avgComingTime();
+                 $avgWaitingView = $this->load->view("components/information/avg_waiting", 
+                                                        array("avgWaiting" => $avgWaiting), 
+                                                        true);
+                 $data ["avgWaiting"] = $avgWaitingView;
+             }
+                  
              
         return $data;
              
@@ -218,12 +239,13 @@ Class Data extends CI_Model
      * @return array
      */
     public function getConfig() {
-        $query = $this->db->query("SELECT * FROM prikaz");
+        $query = $this->db->query("SELECT * FROM `prikaz` WHERE id = (SELECT MAX(id) FROM prikaz)");
         foreach($query->result() as $row){
             $dateTime = $row->vrij_datum;
             $totalTickets = $row->ukupan_br;
             $ordinalNumber = $row->redni_br;
             $timeNextTicket = $row->pros_vri_cek;
+            $avgWaiting = $row->uk_pros_vri_cek;
             $workTime =  $row->poc_rada;   
         }
         return array( "dateTime" => $dateTime,
@@ -231,6 +253,7 @@ Class Data extends CI_Model
                       "ordinalNumber" => $ordinalNumber,
                       "timeNextTicket" => $timeNextTicket,
                       "workTime" => $workTime,
+                      "avgWaiting" => $avgWaiting,
                     );
 
     }

@@ -30,7 +30,6 @@ class EditOption extends CI_Controller {
             $option->velfonta = $columns["velfonta"];
             $option->bojafonta = $columns["bojafonta"];
             $option->status = $columns["status"];
- 
             $option->save();
             redirect("nadzornik"); //refresh?
             
@@ -38,6 +37,28 @@ class EditOption extends CI_Controller {
         else{
             redirect("home");
         }
+    }
+    
+    public function information() {
+        $post = $this->input->post();
+        $dateTime = $post["dateTime"];
+        $totalTickets = $post["totalTickets"];
+        $ordinalNumber = $post["ordinalNumber"];
+        $timeNextTicket = $post["timeNextTicket"];
+        $avgWaiting = $post["avgWaiting"];
+        $workTime = $post["workTime"];
+        
+        $this->load->model("information");
+        $information = new Information();
+        $information->vrij_datum = $dateTime;
+        $information->ukupan_br = $totalTickets;
+        $information->redni_br = $ordinalNumber;
+        $information->poc_rada = $workTime;
+        $information->pros_vri_cek = $timeNextTicket;
+        $information->uk_pros_vri_cek = $avgWaiting;
+        $information->save();
+        redirect("nadzornik");
+        
     }
     
     

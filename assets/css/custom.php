@@ -26,7 +26,7 @@ body{
     padding-top: 10px;    
 }
 #nadzornik{
-    height:150px;
+    height:180px;
 }
 /* ispis tiketa */
 #print{
@@ -97,7 +97,7 @@ body{
     width:300px;
     height:120px;
     border: 3px solid black;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
     color:black;
 }
 .side-ticket h3 {
@@ -136,14 +136,7 @@ body{
 .editOption{
     font-size:20px;
 }
-#default_message_overlay{
- position: absolute;
-    display: block;
-    width: -10px;
-    color: grey;
-    font-size:15px;
 
-}
 #addOption {
     padding-left:250px;
 }
@@ -151,6 +144,12 @@ body{
    padding-left:20px;
    padding-right:18px;
    margin-left:15px;
+}
+
+.information {
+    font-size:15px !important;
+    width:100% !important;
+    margin-bottom:10px !important;
 }
 .form-group{
      margin: -20px 0px 0px 0px;

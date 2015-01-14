@@ -30,9 +30,13 @@ class Nadzornik extends CI_Controller {
                 $report = $this->load->view("components/report", array(), true);
                 $this->dataNadzornik["report"] = $report;
             }
-            
-            
-           
+            else if($this->input->post("information")){
+                $data = array();
+                $data = $this->data->getConfig();
+                
+                $this->dataNadzornik["showInformation"] = $this->load->view("components/information/show_information",$data, true);
+                
+            }
            
             $this->load->helper("url");
             $this->load->helper("form");
@@ -40,18 +44,14 @@ class Nadzornik extends CI_Controller {
             $optionsList = array();
             $dataOption = $this->data->getAllOptions(TRUE);
             $optionsList["dataOption"] = $dataOption;
-            //var_dump($optionsList["dataOption"]["options"][0]);
-            
-//            $newOption = anchor("newOption", "Dodaj novu opciju", 'class="list-group-item"');  
-//            $optionsList["newOption"] = $newOption;
-            
-            
-            
+
             $optionsView = $this->load->view("components/options_list", $optionsList, true);
-            $this->dataNadzornik["optionsList"] = $optionsView;       
-            
+            $this->dataNadzornik["optionsList"] = $optionsView;
+            //what to show
             $this->dataNadzornik = $this->data->whatToShow($this->dataNadzornik, array("status" => TRUE,));
+            
             $this->dataNadzornik["back"] = anchor("", "Back");
+            
             $nadzornik = $this->load->view('nadzornik', $this->dataNadzornik, true);
             $data = array();
             $data["body"] = $nadzornik;

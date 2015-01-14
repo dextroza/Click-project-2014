@@ -6,6 +6,8 @@
      		<?= isset($dateTime)?$dateTime:"" ?>
     		<?= isset($workTime)?$workTime:"" ?>
             <?= isset($totalTickets)?$totalTickets:"" ?>
+            <?= isset($avgWaiting)?$avgWaiting:"" ?>
+            
         </div>
     </aside>
 </div>
@@ -14,7 +16,12 @@
     <aside>
         <div class="side home">
             <?= isset($ordinalNumber)?$ordinalNumber:"" ?>
-            <?= isset($timeNextTicket)?$timeNextTicket:"" ?>         
+            <?= isset($timeNextTicket)?$timeNextTicket:"" ?>
+            <form action="nadzornik" method="post">
+                <input type="hidden" name="information" value="1"/>
+                <button class="side-ticket" type="submit"><h3>Prikaz informacija</h3></button>
+            </form>
+            
           </div>
     </aside>
     
@@ -35,6 +42,7 @@
         </div>
         <?= isset($editOption)?$editOption:"" ?>
         <?= isset($report)?$report:"" ?>
+        <?= isset($showInformation)?$showInformation:""?>
     </div>
 </div> 
    
