@@ -30,7 +30,7 @@ class Ticket_Model extends MY_Model {
      * datum stvaranja tiketa.
      * @var date
      */
-    public $vrijemestvaranja = "now()" ;
+    public $vrijemestvaranja;
     public function getId() {
         return $this->DB_TABLE_PK;
         
