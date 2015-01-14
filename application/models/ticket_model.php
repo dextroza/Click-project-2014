@@ -31,11 +31,7 @@ class Ticket_Model extends MY_Model {
      * @var date
      */
     public $vrijemestvaranja;
-    public function getId() {
-        return $this->DB_TABLE_PK;
-        
-    }
-    
+   
     public function save(){
          if (isset($this->{$this->DB_TABLE_PK})) {
             $this->update();
