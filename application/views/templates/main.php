@@ -26,6 +26,11 @@
     <!--jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
+    <!--datapicker-->
+    <!--<link href="../assets/css/normalize.css" rel="stylesheet" type="text/css"/>-->
+    <link href="../assets/css/datepicker.css" rel="stylesheet" type="text/css"/>	
+    <script type="text/javascript" src="../assets/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../assets/js/jquery-ui-1.8.18.custom.min.js"></script>
 </head>
 <!-- header u bodyu-->
 <body>

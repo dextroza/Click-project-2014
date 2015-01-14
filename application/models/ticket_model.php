@@ -35,5 +35,22 @@ class Ticket_Model extends MY_Model {
         return $this->DB_TABLE_PK;
         
     }
-         
+    
+    public function save(){
+         if (isset($this->{$this->DB_TABLE_PK})) {
+            $this->update();
+        }
+        else {
+            $this->insert();
+        }
+        
+    }
+    
+    public function insert(){
+        $this->db->query("INSERT INTO tiket (poslodavac, oznaka, rednibroj,vrijemestvaranja) "
+        . " VALUES('$this->poslodavac', '$this->oznaka', $this->rednibroj, NOW())");
+    }
+     private function update() {
+        $this->db->update($this->DB_TABLE, $this, "$this->DB_TABLE_PK = $this->id");
+    }     
 }

@@ -9,8 +9,6 @@ class MY_Model extends CI_Model {
      */
     private function insert() {      
         $this->db->insert($this->DB_TABLE, $this);
-//        $this->db->query("INSERT INTO tiket (poslodavac, oznaka, rednibroj,vrijemestvaranja) "
-//                . " VALUES('$this->poslodavac', '$this->oznaka', $this->rednibroj, NOW())");
         $this->DB_TABLE_PK = $this->db->insert_id();    
     }
     
@@ -62,7 +60,7 @@ class MY_Model extends CI_Model {
      * Save the record.
      */
     public function save() {
-        //var_dump($this->DB_TABLE_PK);
+        
         if (isset($this->{$this->DB_TABLE_PK})) {
             $this->update();
         }

@@ -26,20 +26,18 @@
     </aside>
     
     <div class = "main">
-        <div class="mainNadzornik">
+<!--        <div class="mainNadzornik">
 
             <?= isset($optionsList) ? $optionsList : "" ?>
             <div class="choice">
                 <div class="text">Resetiraj brojač</div>
             </div>
-            <!--<div class="choice">
-                    <div class="text">Izvještaj</div>
-            </div>-->
+           
             <form action="nadzornik" method="post">
                 <input type="hidden" name="report" value="1"/>
                 <button class="choice" type="submit">Izvještaj</button>
             </form>
-        </div>
+        </div>-->
         <?= isset($editOption)?$editOption:"" ?>
         <?= isset($report)?$report:"" ?>
         <?= isset($showInformation)?$showInformation:""?>
