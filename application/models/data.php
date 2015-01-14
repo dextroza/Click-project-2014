@@ -89,7 +89,7 @@ Class Data extends CI_Model
          
          
         public function avgComingTime() {
-            $query = $this->db->query("SELECT SUM(vrijemecekanja) as ukupno_vrijeme FROM tiket WHERE DATE(vrijemestvaranja) = CURDATE()");
+            $query = $this->db->query("SELECT SUM(vrijemecekanja) as ukupno_vrijeme FROM tiket WHERE DATE(vrijemestvaranja) = CURDATE() AND vrijemeposluz IS NOT NULL");
             foreach($query->result() as $row){
                 $totalTime = $row->ukupno_vrijeme;
             } 
