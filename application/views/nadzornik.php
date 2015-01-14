@@ -26,7 +26,7 @@
     </aside>
     
     <div class = "main">
-<!--        <div class="mainNadzornik">
+        <div class="mainNadzornik">
 
             <?= isset($optionsList) ? $optionsList : "" ?>
             <div class="choice">
@@ -37,7 +37,7 @@
                 <input type="hidden" name="report" value="1"/>
                 <button class="choice" type="submit">Izvještaj</button>
             </form>
-        </div>-->
+        </div>
         <?= isset($editOption)?$editOption:"" ?>
         <?= isset($report)?$report:"" ?>
         <?= isset($showInformation)?$showInformation:""?>
