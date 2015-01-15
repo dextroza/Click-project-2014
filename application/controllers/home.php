@@ -34,7 +34,7 @@ class Home extends CI_Controller {
 	{
          
 //            provjera djelatnika
-//           for($index = 11; $index <= 74; $index++ ){
+//           for($index = 75; $index <= 75 ; $index++ ){
 //               $this->db->query("INSERT INTO tiket(poslodavac, oznaka, rednibroj, vrijemecekanja,"
 //                       . " vrijemestvaranja, vrijemeposluz, ocekvrdolaska) SELECT poslodavac, oznaka,"
 //                       . " rednibroj, vrijemecekanja, DATE_ADD(vrijemestvaranja, INTERVAL $index DAY),"

@@ -80,7 +80,9 @@ Class Data extends CI_Model
 		$id = $ticket->id + 1;
 		$this->load->model("ticket_model");
 		$newTicket = new Ticket_Model(); 
-		$newTicket->load($id); 
+		$newTicket->load($id);
+               
+                if (!isset($newTicket->vrijemestvaranja))die("nemoj se igrat, isprintaj prvo novi tiket pa onda udaraj po 'pomakni brojač'");
                 $newTicket->vrijemeposluz = date("Y-m-d H:i:s");
                 $currentTime = date("Y-m-d H:i:s");
                 
