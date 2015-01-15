@@ -43,8 +43,6 @@ class Home extends CI_Controller {
 //                                ");
 //           }
 //           die();
-         
-//           $this->db->query("DELETE from tiket WHERE id > 102"); die();
             $repeatSignal = false;
             if ($this->input->post("repeat")){
                 $repeatSignal = true;
