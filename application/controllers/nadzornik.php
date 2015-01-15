@@ -1,7 +1,7 @@
 <?php
 
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-if ( ! defined('base_url'))    show_404();
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
 class Nadzornik extends CI_Controller {
 
@@ -14,8 +14,6 @@ class Nadzornik extends CI_Controller {
     }
 
     public function index() {
-            
-      
         //when click on optionsList
         if ($this->input->post("option")) {
             $id = $this->input->post("option");
