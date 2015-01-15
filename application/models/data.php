@@ -47,7 +47,7 @@ Class Data extends CI_Model {
     /**
      * get new ticket for client
      * @param string $choice
-     * @return int id of last ticket
+     * @return int id of new ticket
      */
     public function newTicket($choice) {
         $this->load->model('ticket_model');
@@ -63,15 +63,10 @@ Class Data extends CI_Model {
         }
 
         $ticket->rednibroj = $ordinalNumber;
-
-
-        //ocekvrDolaska rješavamo u views/tiket ili tu u funkciji
         $waiting = $this->avgComingTime();
 
         $ticket->save();
-        //novo
-        // //TODO waiting zbrojiti na vrijeme stvaranja i upisati u ocekvrdolaska
-        //spremimio u bazu da se automatski spremi vrijemestvaranja po defaultu
+        //spremimo u bazu da se automatski spremi vrijemestvaranja po defaultu
 
         $newTicket = new Ticket_Model();
         $newTicket->load($noviId); //loadamo isti taj tiket kako bi računali ocekvrdolaska
@@ -84,7 +79,6 @@ Class Data extends CI_Model {
         $newTicket->ocekvrdolaska = $stringExpectedTime;
         $newTicket->save();
 
-        //kraj novog
 
         return $noviId;
     }
