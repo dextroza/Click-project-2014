@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2015 at 01:06 AM
+-- Generation Time: Jan 15, 2015 at 08:18 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -32,15 +32,17 @@ CREATE TABLE IF NOT EXISTS `informacije` (
   `ukupan_br` int(11) DEFAULT NULL,
   `pros_vri_cek` time DEFAULT NULL,
   `pocetakrada` int(2) DEFAULT NULL,
-  `vrij_datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `vrij_datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `reset` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `informacije`
 --
 
-INSERT INTO `informacije` (`id`, `redni_br`, `ukupan_br`, `pros_vri_cek`, `pocetakrada`, `vrij_datum`) VALUES
-(1, 0, 0, '00:00:00', 8, '2015-01-14 12:28:45');
+INSERT INTO `informacije` (`id`, `redni_br`, `ukupan_br`, `pros_vri_cek`, `pocetakrada`, `vrij_datum`, `reset`) VALUES
+(1, 0, 0, '00:00:00', 8, '2015-01-14 12:28:45', 0),
+(2, NULL, NULL, NULL, 8, '2015-01-15 16:38:22', 0);
 
 -- --------------------------------------------------------
 
@@ -82,10 +84,10 @@ CREATE TABLE IF NOT EXISTS `opcija` (
 --
 
 INSERT INTO `opcija` (`id`, `oznaka`, `opis`, `velfonta`, `bojafonta`, `status`) VALUES
-(17, 'B', 'Krediti', 35, 'black', 1),
+(17, 'A', 'Uplate i isplate', 30, 'blue', 1),
 (18, '', '', 0, '', 0),
-(19, 'C', 'Pregled računa', 25, 'red', 1),
-(20, 'A', 'Uplate i isplate', 20, 'blue', 1),
+(19, 'B', 'Krediti', 30, 'blue', 1),
+(20, 'C', 'Pregled računa', 30, 'blue', 1),
 (21, '', '', 0, '', 0),
 (22, '', '', 0, '', 0);
 
@@ -103,35 +105,36 @@ CREATE TABLE IF NOT EXISTS `prikaz` (
   `poc_rada` tinyint(1) NOT NULL DEFAULT '1',
   `redni_br` tinyint(1) NOT NULL DEFAULT '1',
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `uk_pros_vri_cek` tinyint(1) NOT NULL DEFAULT '1',
-  `reset` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+  `uk_pros_vri_cek` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `prikaz`
 --
 
-INSERT INTO `prikaz` (`id`, `vrij_datum`, `ukupan_br`, `pros_vri_cek`, `poc_rada`, `redni_br`, `timestamp`, `uk_pros_vri_cek`, `reset`) VALUES
-(1, 1, 1, 1, 1, 1, '2015-01-14 12:20:10', 1, 0),
-(2, 1, 1, 1, 1, 1, '2015-01-14 12:59:10', 1, 0),
-(3, 1, 1, 1, 0, 1, '2015-01-14 13:11:54', 1, 0),
-(4, 1, 1, 1, 0, 1, '2015-01-14 13:12:13', 1, 0),
-(5, 0, 0, 0, 0, 0, '2015-01-14 13:14:47', 1, 0),
-(6, 1, 1, 0, 0, 1, '2015-01-14 13:15:05', 1, 0),
-(7, 1, 1, 1, 1, 1, '2015-01-14 13:15:41', 1, 0),
-(8, 0, 0, 0, 0, 0, '2015-01-14 13:29:00', 1, 0),
-(9, 0, 0, 0, 0, 0, '2015-01-14 13:39:27', 1, 0),
-(10, 0, 0, 0, 0, 0, '2015-01-14 13:42:11', 0, 0),
-(11, 1, 0, 0, 0, 0, '2015-01-14 13:44:26', 0, 0),
-(12, 1, 1, 0, 0, 0, '2015-01-14 13:48:21', 0, 0),
-(13, 1, 1, 0, 0, 1, '2015-01-14 13:48:29', 0, 0),
-(14, 1, 1, 1, 0, 1, '2015-01-14 13:48:38', 0, 0),
-(15, 1, 1, 0, 1, 1, '2015-01-14 13:49:13', 0, 0),
-(16, 1, 1, 0, 0, 1, '2015-01-14 13:49:22', 0, 0),
-(17, 1, 1, 0, 1, 1, '2015-01-14 13:49:30', 0, 0),
-(18, 1, 1, 1, 1, 1, '2015-01-14 13:49:41', 1, 0),
-(19, 1, 1, 1, 1, 1, '2015-01-14 16:59:05', 1, 0),
-(20, 1, 1, 1, 1, 1, '2015-01-14 17:13:49', 1, 0);
+INSERT INTO `prikaz` (`id`, `vrij_datum`, `ukupan_br`, `pros_vri_cek`, `poc_rada`, `redni_br`, `timestamp`, `uk_pros_vri_cek`) VALUES
+(1, 1, 1, 1, 1, 1, '2015-01-14 12:20:10', 1),
+(2, 1, 1, 1, 1, 1, '2015-01-14 12:59:10', 1),
+(3, 1, 1, 1, 0, 1, '2015-01-14 13:11:54', 1),
+(4, 1, 1, 1, 0, 1, '2015-01-14 13:12:13', 1),
+(5, 0, 0, 0, 0, 0, '2015-01-14 13:14:47', 1),
+(6, 1, 1, 0, 0, 1, '2015-01-14 13:15:05', 1),
+(7, 1, 1, 1, 1, 1, '2015-01-14 13:15:41', 1),
+(8, 0, 0, 0, 0, 0, '2015-01-14 13:29:00', 1),
+(9, 0, 0, 0, 0, 0, '2015-01-14 13:39:27', 1),
+(10, 0, 0, 0, 0, 0, '2015-01-14 13:42:11', 0),
+(11, 1, 0, 0, 0, 0, '2015-01-14 13:44:26', 0),
+(12, 1, 1, 0, 0, 0, '2015-01-14 13:48:21', 0),
+(13, 1, 1, 0, 0, 1, '2015-01-14 13:48:29', 0),
+(14, 1, 1, 1, 0, 1, '2015-01-14 13:48:38', 0),
+(15, 1, 1, 0, 1, 1, '2015-01-14 13:49:13', 0),
+(16, 1, 1, 0, 0, 1, '2015-01-14 13:49:22', 0),
+(17, 1, 1, 0, 1, 1, '2015-01-14 13:49:30', 0),
+(18, 1, 1, 1, 1, 1, '2015-01-14 13:49:41', 1),
+(19, 1, 1, 1, 1, 1, '2015-01-14 16:59:05', 1),
+(20, 1, 1, 1, 1, 1, '2015-01-14 17:13:49', 1),
+(21, 1, 1, 1, 1, 0, '2015-01-15 18:53:37', 1),
+(22, 1, 1, 1, 1, 1, '2015-01-15 18:53:47', 1);
 
 -- --------------------------------------------------------
 
@@ -148,14 +151,14 @@ CREATE TABLE IF NOT EXISTS `tiket` (
   `vrijemestvaranja` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `vrijemeposluz` timestamp NULL DEFAULT NULL,
   `vrijemecekanja` int(3) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4692 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4712 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tiket`
 --
 
 INSERT INTO `tiket` (`id`, `poslodavac`, `oznaka`, `rednibroj`, `ocekvrdolaska`, `vrijemestvaranja`, `vrijemeposluz`, `vrijemecekanja`) VALUES
-(1, 'PBZ', 'C', 1, '2014-11-01 07:03:00', '2014-11-01 07:03:08', '2014-11-01 07:03:00', 0),
+(1, 'PBZ', 'C', 1, '2014-11-01 07:03:08', '2014-11-01 07:03:08', '2015-11-15 07:03:08', 0),
 (2, 'PBZ', 'A', 2, '2014-11-01 07:09:00', '2014-11-01 07:09:00', '2014-11-01 07:15:00', 6),
 (3, 'PBZ', 'B', 3, '2014-11-01 07:11:00', '2014-11-01 07:11:00', '2014-11-01 07:21:00', 10),
 (4, 'PBZ', 'C', 4, '2014-11-01 07:18:00', '2014-11-01 07:15:00', '2014-11-01 07:30:00', 15),
@@ -3987,8 +3990,28 @@ INSERT INTO `tiket` (`id`, `poslodavac`, `oznaka`, `rednibroj`, `ocekvrdolaska`,
 (4687, 'PBZ', 'C', 49, '2015-01-14 14:35:00', '2015-01-14 14:25:00', '2015-01-14 14:29:00', 4),
 (4688, 'PBZ', 'C', 50, '2015-01-14 14:52:00', '2015-01-14 14:42:00', '2015-01-14 14:42:00', 0),
 (4689, 'PBZ', 'A', 51, '2015-01-14 15:00:00', '2015-01-14 14:50:00', '2015-01-14 14:51:00', 1),
-(4690, 'PBZ', 'B - Krediti', 1, '2015-01-15 00:00:00', '2015-01-14 23:57:27', '2015-01-14 23:59:00', 0),
-(4691, 'PBZ', 'B - Krediti', 2, '2015-01-15 00:03:32', '2015-01-15 00:03:32', '2015-01-15 00:05:14', 2);
+(4690, 'PBZ', 'A - Uplate i isplate', 1, '2015-01-15 16:38:22', '2015-01-15 16:38:22', '2015-01-15 16:38:22', 0),
+(4691, 'PBZ', 'B - Krediti', 2, '2015-01-15 17:00:39', '2015-01-15 17:00:39', '2015-01-15 17:00:53', 0),
+(4692, 'PBZ', 'A - Uplate i isplate', 3, '2015-01-15 17:00:42', '2015-01-15 17:00:42', '2015-01-15 17:01:03', 0),
+(4693, 'PBZ', 'C - Pregled računa', 4, '2015-01-15 17:35:41', '2015-01-15 17:35:41', '2015-01-15 17:50:28', 15),
+(4694, 'PBZ', 'C - Pregled računa', 5, '2015-01-15 17:38:38', '2015-01-15 17:38:38', '2015-01-15 17:52:06', 13),
+(4695, 'PBZ', 'C - Pregled računa', 1, '2015-01-15 17:39:04', '2015-01-15 17:39:04', '2015-01-15 17:52:07', 13),
+(4696, 'PBZ', 'C - Pregled računa', 1, '2015-01-15 17:40:02', '2015-01-15 17:40:02', '2015-01-15 18:01:53', 22),
+(4697, 'PBZ', 'C - Pregled računa', 6, '2015-01-15 17:40:25', '2015-01-15 17:40:25', '2015-01-15 18:01:55', 22),
+(4698, 'PBZ', 'B - Krediti', 7, '2015-01-15 17:49:37', '2015-01-15 17:49:37', '2015-01-15 18:02:04', 12),
+(4699, 'PBZ', 'C - Pregled računa', 1, '2015-01-15 17:50:17', '2015-01-15 17:50:17', '2015-01-15 18:02:05', 12),
+(4700, 'PBZ', 'B - Krediti', 2, '2015-01-15 18:06:07', '2015-01-15 18:00:07', '2015-01-15 18:02:06', 2),
+(4701, 'PBZ', 'C - Pregled računa', 3, '2015-01-15 18:06:22', '2015-01-15 18:00:22', '2015-01-15 18:02:11', 2),
+(4702, 'PBZ', 'A - Uplate i isplate', 4, '2015-01-15 18:06:24', '2015-01-15 18:00:24', '2015-01-15 18:02:24', 2),
+(4703, 'PBZ', 'B - Krediti', 1, '2015-01-15 18:07:14', '2015-01-15 18:01:14', '2015-01-15 18:02:27', 1),
+(4704, 'PBZ', 'C - Pregled računa', 2, '2015-01-15 18:07:16', '2015-01-15 18:01:16', '2015-01-15 18:02:34', 1),
+(4705, 'PBZ', 'B - Krediti', 1, '2015-01-15 19:18:29', '2015-01-15 19:11:29', '2015-01-15 19:12:20', 1),
+(4706, 'PBZ', 'A - Uplate i isplate', 2, '2015-01-15 19:18:33', '2015-01-15 19:11:33', '2015-01-15 19:12:25', 1),
+(4707, 'PBZ', 'C - Pregled računa', 3, '2015-01-15 19:18:36', '2015-01-15 19:11:36', '2015-01-15 19:12:35', 1),
+(4708, 'PBZ', 'B - Krediti', 4, '2015-01-15 19:18:54', '2015-01-15 19:12:54', '2015-01-15 19:14:01', 1),
+(4709, 'PBZ', 'B - Krediti', 5, '2015-01-15 19:20:09', '2015-01-15 19:14:09', '2015-01-15 19:14:19', 0),
+(4710, 'PBZ', 'A - Uplate i isplate', 1, '2015-01-15 19:20:35', '2015-01-15 19:14:35', '2015-01-15 19:14:47', 0),
+(4711, 'PBZ', 'A - Uplate i isplate', 2, '2015-01-15 19:20:38', '2015-01-15 19:14:38', '2015-01-15 19:14:48', 0);
 
 --
 -- Indexes for dumped tables
@@ -4032,7 +4055,7 @@ ALTER TABLE `tiket`
 -- AUTO_INCREMENT for table `informacije`
 --
 ALTER TABLE `informacije`
-MODIFY `id` int(1) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(1) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `korisnici`
 --
@@ -4047,12 +4070,12 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 -- AUTO_INCREMENT for table `prikaz`
 --
 ALTER TABLE `prikaz`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `tiket`
 --
 ALTER TABLE `tiket`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4692;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4712;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
