@@ -49,6 +49,8 @@ class Izvjestaj extends CI_Controller {
    
         }
         
+        else redirect("nadzornik");
+        
         //generate table and view
         $tmpl = array(
                 'table_open' => '<table border="2" class="table_my"  cellpadding="0" cellspacing="0">',
