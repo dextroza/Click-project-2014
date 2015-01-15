@@ -10,6 +10,7 @@ class Home extends CI_Controller {
         parent::__construct();
         $this->load->model('data','',TRUE);
         $this->load->database(); 
+        $this->data->newDay();
         
         
     }

@@ -3,6 +3,27 @@
 Class Data extends CI_Model {
 
     /**
+     * inserting ticket in new day
+     * 
+     */
+    public function newDay() {
+
+        $query = $this->db->query("SELECT COUNT(*) as day FROM informacije WHERE DATE(vrij_datum) = CURDATE()");
+        foreach ($query->result() as $row) {
+            if ($row->day == 0) {
+
+                $query = $this->db->
+                        query("INSERT INTO tiket (poslodavac, oznaka,rednibroj,"
+                        . "ocekvrdolaska,vrijemeposluz,vrijemecekanja)"
+                        . " VALUES('PBZ','A - Uplate i isplate',1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP,0 ) ");
+
+                $query = $this->db->query("INSERT INTO informacije (vrij_datum, pocetakrada)"
+                        . "VALUES (CURRENT_TIMESTAMP, 8)");
+            }
+        }
+    }
+
+    /**
      * currentTicket
      * 
      * @return int redni broj
@@ -112,7 +133,7 @@ Class Data extends CI_Model {
             $totalNumber = $row->ukupan_broj;
         }
         //ako ne postoji tiket u bazi taj dan onda ne smije prikazivati podatke Trenutni tiket i vrijeme čekanja za sljedeći
-      
+
         return intval($totalTime / $totalNumber);
     }
 
@@ -145,11 +166,11 @@ Class Data extends CI_Model {
             $id = $row->id;
         }
         //ako ne postoji tiket u tom danu
-        if (NULL === $id){
+        if (NULL === $id) {
             return NULL;
         }
         $query2 = $this->db->query("SELECT rednibroj FROM tiket WHERE id = $id");
-        
+
         foreach ($query2->result() as $row) {
             $redni = $row->rednibroj;
         }
@@ -158,17 +179,18 @@ Class Data extends CI_Model {
         $ticket->load($id);
         return $ticket;
     }
-    
+
     /**
      * check if one or more tickets exist today
      * @return boolean
      */
     public function existTickets() {
-        $query  = $this->db->query("SELECT COUNT(*) as count FROM tiket WHERE DATE(vrijemestvaranja) = CURDATE() ");
-        foreach($query->result() as $row){
-            if ($row->count == 0) return FALSE;
+        $query = $this->db->query("SELECT COUNT(*) as count FROM tiket WHERE DATE(vrijemestvaranja) = CURDATE() ");
+        foreach ($query->result() as $row) {
+            if ($row->count == 0)
+                return FALSE;
         }
-        
+
         return TRUE;
     }
 
@@ -192,21 +214,20 @@ Class Data extends CI_Model {
         $ticket = isset($optional["ticket"]) && $optional["ticket"] == FALSE ? FALSE : TRUE;
 
         if ($information["ordinalNumber"] === "1" || $status == TRUE) {
-           
-            
-                $currentTicket = $this->currentTicket();
-                $currentTicket = $currentTicket->rednibroj;
 
 
-                $ordinalNumberView = $this->load->view("components/information/current_ticket", array(
-                    "ordinalNumber" => $currentTicket,
-                    "repeat" => $repeat,
-                    "ticket" => $ticket,
-                        ), true);
+            $currentTicket = $this->currentTicket();
+            $currentTicket = $currentTicket->rednibroj;
 
 
-                $data ["ordinalNumber"] = $ordinalNumberView;
-            
+            $ordinalNumberView = $this->load->view("components/information/current_ticket", array(
+                "ordinalNumber" => $currentTicket,
+                "repeat" => $repeat,
+                "ticket" => $ticket,
+                    ), true);
+
+
+            $data ["ordinalNumber"] = $ordinalNumberView;
         }
 
         if ($information["dateTime"] === "1" || $status == TRUE) {
@@ -219,17 +240,16 @@ Class Data extends CI_Model {
             $data ["totalTickets"] = $totalTicketsView;
         }
         if ($information["timeNextTicket"] === "1" || $status == TRUE) {
-            
-            if (  FALSE !== $this->avgNextTime()){ 
-               $avgComingTime = date("H:i", strtotime($this->avgNextTime())); //results in H:min
-            }
-            else $avgComingTime = FALSE;
+
+            if (FALSE !== $this->avgNextTime()) {
+                $avgComingTime = date("H:i", strtotime($this->avgNextTime())); //results in H:min
+            } else
+                $avgComingTime = FALSE;
 
             $timeNextTicketView = $this->load->view("components/information/time_next_ticket", array("timeNextTicket" => $avgComingTime,), true);
-           
-            
+
+
             $data ["timeNextTicket"] = $timeNextTicketView;
-           
         }
         if ($information["workTime"] === "1" || $status == TRUE) {
             $workTime = $this->workTime();
@@ -237,13 +257,12 @@ Class Data extends CI_Model {
             $data ["workTime"] = $workTimeView;
         }
         if ($information["avgWaiting"] === "1" || $status == TRUE) {
-            
+
             $avgWaiting = $this->avgComingTime();
             $avgWaitingView = $this->load->view("components/information/avg_waiting", array("avgWaiting" => $avgWaiting), true);
-            
-            
+
+
             $data ["avgWaiting"] = $avgWaitingView;
-            
         }
 
 

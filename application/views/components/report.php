@@ -2,7 +2,7 @@
 <form action="izvjestaj" method="post" class="navbar-form navbar-left" >
     <div class="day_izvjestaj">
         <label for="datepicker">Po danima</label>
-        <input type="text" id="datepicker" name="day" style="height:30px;"/>
+        <input type="text" name="day" style="height:30px;"/>
         <input type="submit" class="btn btn-default navbar-btn" value="Print"/>
     </div>
 </form>
