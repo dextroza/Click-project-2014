@@ -1,7 +1,7 @@
 <?php
 
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+if (!defined('BASEPATH'))   exit('No direct script access allowed');
+if ( ! defined('base_url'))    show_404();
 
 class Djelatnik extends CI_Controller {
 
