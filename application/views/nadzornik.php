@@ -29,9 +29,10 @@
         <div class="mainNadzornik">
 
             <?= isset($optionsList) ? $optionsList : "" ?>
-            <div class="choice">
-                <div class="text">Resetiraj brojač</div>
-            </div>
+            <form action="nadzornik" method="post">
+                <input type="hidden" name="reset" value="1"/>
+                <button class="choice" type="submit">Resetiraj brojač</button>
+            </form>
            
             <form action="nadzornik" method="post">
                 <input type="hidden" name="report" value="1"/>

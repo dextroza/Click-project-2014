@@ -43,6 +43,35 @@ Class Data extends CI_Model {
             return $red->suma;
         }
     }
+    /**
+     * reset ticket counter
+     * @param int $optional
+     * 0-turn off reset
+     * 1-turn on reset
+     * 2-check reset
+     * @return boolean
+     */
+    public function reset($optional) {
+        
+        $query = $this->db->query("SELECT MAX(id) as id FROM informacije");
+            foreach ($query->result() as $row) {
+                $id = $row->id;
+            }
+        if ($optional == 1 || $optional == 0) {
+
+            $query = $this->db->query("UPDATE informacije SET reset = $optional WHERE id = $id");
+            return FALSE;
+        }
+        else{
+            $query = $this->db->query("SELECT reset FROM informacije WHERE id = $id");
+            foreach($query->result() as $row) {
+                if($row->reset == 1)
+                    return TRUE;
+            }
+        }
+        
+        
+    }
 
     /**
      * get new ticket for client
@@ -55,14 +84,21 @@ Class Data extends CI_Model {
         $ticket = new Ticket_Model();
         $ticket->oznaka = $choice;
         //nalazimo najvisi redni broj i dodjeljujemo tiketu za 1 visi r.broj
-        $query = $this->db->query("SELECT MAX(rednibroj) as max_redni, MAX(id) as id "
-                . "FROM tiket WHERE DATE(vrijemestvaranja) = CURDATE() ");
+        $query = $this->db->query("SELECT rednibroj as max_redni, id " //MAX(redni_broj)
+                . "FROM tiket WHERE DATE(vrijemestvaranja) = CURDATE() AND "
+                . "id = (SELECT MAX(id) FROM tiket WHERE DATE(vrijemestvaranja) = CURDATE()) ");
         foreach ($query->result() as $result) {
             $ordinalNumber = $result->max_redni + 1 <= 999 ? $result->max_redni + 1 : 1;
             $noviId = $result->id + 1;
         }
-
-        $ticket->rednibroj = $ordinalNumber;
+        //if reset on
+        if ($this->reset(2)){
+            $ticket->rednibroj = 1;
+            $this->reset(0);
+        }
+        else
+            $ticket->rednibroj = $ordinalNumber;
+        
         $waiting = $this->avgComingTime();
 
         $ticket->save();

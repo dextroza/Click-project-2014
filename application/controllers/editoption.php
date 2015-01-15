@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class EditOption extends CI_Controller {
-    //novo
+   
     function __construct()
     {
         parent::__construct();
@@ -10,7 +10,7 @@ class EditOption extends CI_Controller {
         
        
     }
-    
+    //edit, add or delete option
     public function index() {
         if ($this->input->post()){
             $id = $this->input->post("id");
@@ -31,7 +31,7 @@ class EditOption extends CI_Controller {
             $option->bojafonta = $columns["bojafonta"];
             $option->status = $columns["status"];
             $option->save();
-            redirect("nadzornik"); //refresh?
+            redirect("nadzornik");
             
         }
         else{
