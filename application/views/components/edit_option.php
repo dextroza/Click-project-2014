@@ -50,7 +50,7 @@ $sizes = ["20", "25", "30","35", "40"];
         </form>
     <?php if ("" != $id){ ?>
         <form style="margin-left:-98px; margin-top:190px;" action="editoption" method="post" class="navbar-form navbar-left">
-            <input type="hidden" class="form-control" name="delete">
+            <input type="hidden" class="form-control" name="delete" value="1">
             <input type="hidden" class="form-control" name="id" value="<?= $id ?>">
         <button style="" type="submit" class="btn btn-default">Delete</button>
         </form>
