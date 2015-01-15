@@ -19,7 +19,7 @@
             <?= isset($timeNextTicket)?$timeNextTicket:"" ?>
             <form action="nadzornik" method="post">
                 <input type="hidden" name="information" value="1"/>
-                <button class="side-ticket" type="submit"><h3>Prikaz informacija</h3></button>
+                <button class="side-ticket" id="info" type="submit"><h3>Prikaz informacija</h3></button>
             </form>
             
           </div>
@@ -31,12 +31,12 @@
             <?= isset($optionsList) ? $optionsList : "" ?>
             <form action="nadzornik" method="post">
                 <input type="hidden" name="reset" value="1"/>
-                <button class="choice" type="submit">Resetiraj brojač</button>
+                <button class="choice" style="margin-top:0px;" type="submit">Resetiraj brojač</button>
             </form>
            
             <form action="nadzornik" method="post">
                 <input type="hidden" name="report" value="1"/>
-                <button class="choice" type="submit">Izvještaj</button>
+                <button class="choice" style="margin-top:0px;" type="submit">Izvještaj</button>
             </form>
         </div>
         <?= isset($editOption)?$editOption:"" ?>

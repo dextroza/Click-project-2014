@@ -1,5 +1,5 @@
 
-<div class="list-group opcije">
+<div class="list-group opcije" style="border-radius:7px;">
     <li id="naslovOpcije" class="list-group-item">
         <h4 class="text opc">Opcije</h4></li>
 

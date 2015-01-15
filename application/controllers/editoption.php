@@ -12,6 +12,11 @@ class EditOption extends CI_Controller {
     }
     //edit, add or delete option
     public function index() {
+        if(!$this->input->post("oznaka") || ! $this->input->post("opis") || !$this->input->post("status")){
+            redirect("nadzornik");
+            
+            
+        }
         if ($this->input->post()){
             $id = $this->input->post("id");
             $option  = new Options_Model();

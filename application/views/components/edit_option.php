@@ -24,8 +24,8 @@ $sizes = ["20", "25", "30","35", "40"];
         <div class="form-group">
             
             <input type="hidden" class="form-control" name="id" value="<?= $id ?>" placeholder="id"><br>
-            <input type="text" class="form-control" name="oznaka" value="<?= $oznaka ?>" placeholder="oznaka"><br>
-            <input type="text" class="form-control" name="opis" value="<?= $opis ?>" placeholder="opis"><br>
+            <input type="text" class="form-control" style="width:100%;" name="oznaka" value="<?= $oznaka ?>" placeholder="oznaka (nužno)"><br>
+            <input type="text" class="form-control" style="width:100%;" name="opis" value="<?= $opis ?>" placeholder="opis (nužno)"><br>
             <select style="font-size:15px; width:100%" class="form-control" name="velfonta">
             <?php foreach($sizes as $size){ ?>
                 
@@ -41,7 +41,7 @@ $sizes = ["20", "25", "30","35", "40"];
             </select><br>
             <!--<span id="default_message_overlay">Prikazati</span>-->
             <select id="my_select" style="width:100%" name="status" class="form-control">
-                <option selected disabled >-- Opcija prikazivanja --</option>
+                <option selected disabled >-- Opcija prikazivanja -- (nužno)</option>
                 <option <?= $status == "1"?"selected":"" ?> value="1">Da</option>
                 <option <?= $status == "0"?"selected":"" ?> value="0">Ne</option>
             </select>

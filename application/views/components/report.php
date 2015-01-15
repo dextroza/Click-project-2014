@@ -1,7 +1,8 @@
-
+<div class="report">
+     <span class="label label-primary reportHead" >Izvještaj:</span><br>
 <form action="izvjestaj" method="post" class="navbar-form navbar-left" >
     <div class="day_izvjestaj">
-        <label for="datepicker">*Po danima</label>
+        <label for="datepicker">Po danima</label>
         <input type="text" id="datepicker" name="day" style="height:30px;"/>
         <input type="submit" class="btn btn-default navbar-btn" value="Print"/>
     </div>
@@ -9,7 +10,7 @@
 
 <form action="izvjestaj" method="post" class="navbar-form navbar-left">
 
-    <label for="monthpicker">*Po mjesecima</label>
+    <label for="monthpicker">Po mjesecima</label>
     <select style="width:173px; height:30px;" name="month">
         <?php foreach ($months as $month) {
             ?>
@@ -21,7 +22,7 @@
     </select>
     <input type="submit" class="btn btn-default navbar-btn" value="Print"/>
 </form>
-
+</div>
 <script type="text/javascript">
     $(function () {
         $('#datepicker').datepicker({
