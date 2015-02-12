@@ -17,6 +17,8 @@
         <div class="side home">
             <?= isset($ordinalNumber)?$ordinalNumber:"" ?>
             <?= isset($timeNextTicket)?$timeNextTicket:"" ?>
+            
+            <!--//prikazati informacije-->
             <form action="nadzornik" method="post">
                 <input type="hidden" name="information" value="1"/>
                 <button class="side-ticket" id="info" type="submit"><h3>Prikaz informacija</h3></button>
@@ -29,6 +31,8 @@
         <div class="mainNadzornik">
 
             <?= isset($optionsList) ? $optionsList : "" ?>
+           
+            <!--resetiraj brojač-->
             <form action="nadzornik" method="post">
                 <input type="hidden" name="reset" value="1"/>
                 <button class="choice" style="margin-top:0px;" type="submit">Resetiraj brojač</button>

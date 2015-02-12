@@ -3,6 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
+
 class Nadzornik extends CI_Controller {
 
     private $dataNadzornik = array();
@@ -11,9 +12,11 @@ class Nadzornik extends CI_Controller {
         parent::__construct();
         $this->load->model('data', '', TRUE);
         $this->load->model('izvjestaj_model', '', TRUE);
+       if(!$this->session->userdata('logged_in')) redirect("home");
     }
 
     public function index() {
+       
         //when click on optionsList
         if ($this->input->post("option")) {
             $id = $this->input->post("option");

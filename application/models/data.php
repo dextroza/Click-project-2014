@@ -262,6 +262,8 @@ Class Data extends CI_Model {
 
         if ($information["dateTime"] === "1" || $status == TRUE) {
             $dateTimeView = $this->load->view("components/information/date_time", array(), true);
+            
+            
             $data ["dateTime"] = $dateTimeView;
         }
         if ($information["totalTickets"] === "1" || $status == TRUE) {

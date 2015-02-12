@@ -23,7 +23,7 @@ class EditOption extends CI_Controller {
                 $this->db->query("DELETE FROM opcija WHERE id = $id");
                redirect("nadzornik");
             }
-            if(!$this->input->post("oznaka") || ! $this->input->post("opis") || !$this->input->post("status")){
+            if(!$this->input->post("oznaka") || ! $this->input->post("opis") || $this->input->post("status") == NULL){
             redirect("nadzornik");
               
         }

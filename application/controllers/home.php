@@ -11,7 +11,11 @@ class Home extends CI_Controller {
         $this->load->model('data','',TRUE);
         $this->load->database(); 
         $this->data->newDay();
+       
+        $this->session->sess_destroy();
+        //setcookie( config_item('sess_cookie_name'), '', time() - 3600 );
         
+      
         
     }
     //kraj novog
@@ -51,15 +55,27 @@ class Home extends CI_Controller {
             
             $this->load->helper(array('form'));
             $loginView = $this->load->view("components/login_view", array(),true);
+           
             $this->dataHome["loginView"] = $loginView;
+            
+            //dohvaćamo opcije iz baze
             $dataOption = $this->data->getAllOptions();
+            
+            
             $optionsView = $this->load->view('components/choose_option', $dataOption, true);
+            
+            
 //            $optionsView = $this->data->getOptions();
             $this->dataHome["options"] = $optionsView;
+            
+           
 //
             $this->information = $this->data->getConfig();
+            
             $this->dataHome = $this->data->whatToShow($this->dataHome, array("information" =>$this->information,
-                                                                                 "repeat" => $repeatSignal));  
+                                                                                 "repeat" => $repeatSignal)); 
+            
+           
             $home = $this->load->view('home', $this->dataHome, true);
             $data = array();
             $data["body"] = $home;

@@ -2,7 +2,6 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-//
 
 class Djelatnik extends CI_Controller {
 
@@ -11,7 +10,7 @@ class Djelatnik extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model('data', '', TRUE);
-        //$this->load->database();
+        if (!$this->session->userdata("logged_in")) redirect("home");
     }
 
     public function index() {
@@ -21,6 +20,8 @@ class Djelatnik extends CI_Controller {
         }
         //provjera ima li još isprintanih tiketa
         $ticket = TRUE;
+        
+        //next ticket
         if ($this->input->post("next")) {
             $ticket = $this->data->nextTicket();
         }
